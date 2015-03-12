@@ -32,7 +32,9 @@ int main(int argc, char* args[]) {
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
 	const int SCREEN_BPP = 32;
-	
+	bool quit = false;
+	SDL_Event e;	
+
 	//Images to load
 	SDL_Surface* background = NULL;
 	SDL_Surface* message = NULL;
@@ -63,7 +65,15 @@ int main(int argc, char* args[]) {
 	apply_surface(180, 140, message, screen);
 	
 	SDL_Flip(screen);
-	SDL_Delay(5000);
+	
+	while(!quit) {
+		while(SDL_PollEvent(&e)!=0) {
+			if(e.type == SDL_QUIT) {
+				quit = true;
+			}
+		}
+	}	
+
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(message);
 	SDL_FreeSurface(screen);
