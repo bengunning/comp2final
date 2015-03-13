@@ -1,8 +1,8 @@
 // Driver program for sheepHerder
 
 #include "Sheep.h"
+#include "Graphics.h"
 #include "SDL/SDL.h"
-#include <cmath>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -29,42 +29,24 @@ void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination) 
 }
 
 int main(int argc, char* args[]) {
-	const int SCREEN_WIDTH = 640;
-	const int SCREEN_HEIGHT = 480;
-	const int SCREEN_BPP = 32;
+	Graphics system;
 	bool quit = false;
 	SDL_Event e;	
 
 	//Images to load
 	SDL_Surface* background = NULL;
 	SDL_Surface* message = NULL;
-    	SDL_Surface* screen = NULL;          
-
-	// load SDL components
-	if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
-        	return 1; //ERROR 1: could not initialize SDL objects 
-	}
-
-	// setup screen, the window all other graphics will go into
-	screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
-
-	if (!screen) {
-		return 2; //ERROR 2: could not initialize screen
-	}
-	
-	//Set window caption
-	SDL_WM_SetCaption( "Sheep Herder", NULL );
 
 	background = load_image("images/background.bmp");
 	message = load_image( "images/hello.bmp" );
 
-	apply_surface(0,0,background,screen);
-	apply_surface(320, 0, background, screen);
-	apply_surface(0, 240, background, screen);
-	apply_surface(320, 240, background, screen);
-	apply_surface(180, 140, message, screen);
+	apply_surface(0,0,background, system.screen);
+	apply_surface(320, 0, background, system.screen);
+	apply_surface(0, 240, background, system.screen);
+	apply_surface(320, 240, background, system.screen);
+	apply_surface(180, 140, message, system.screen);
 	
-	SDL_Flip(screen);
+	SDL_Flip(system.screen);
 	
 	while(!quit) {
 		while(SDL_PollEvent(&e)!=0) {
@@ -76,9 +58,6 @@ int main(int argc, char* args[]) {
 
 	SDL_FreeSurface(background);
 	SDL_FreeSurface(message);
-	SDL_FreeSurface(screen);
-
-	SDL_Quit();
 	
         return 0; 
 }
