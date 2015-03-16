@@ -19,9 +19,31 @@ Graphics::Graphics() {
 	setup();
 }
 
+Graphics::Graphics(int width, int height, int bits) :
+	screenWidth(width),
+	screenHeight(height),
+	bpp(bits)
+	{setup();}
+
 Graphics::~Graphics() {
 	SDL_FreeSurface(screen);
 	SDL_Quit();
+}
+
+int Graphics::getWidth() {
+	return screenWidth;
+}
+
+int Graphics::getHeight() {
+	return screenHeight;
+}
+
+void Graphics::fill_with_background(SDL_Surface* background, int width, int height) {
+	for(int xPos=0; xPos < getWidth(); xPos += width) {
+		for(int yPos=0; yPos < getHeight(); yPos += height) {
+			apply_surface(xPos,yPos,background,screen);
+		}
+	}
 }
 
 SDL_Surface *Graphics::load_image(string filename) {

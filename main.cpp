@@ -7,7 +7,7 @@
 using namespace std;
 
 int main(int argc, char* args[]) {
-	Graphics system;
+	Graphics system(1280,960,32);
 	bool quit = false;
 	SDL_Event e;	
 
@@ -16,12 +16,15 @@ int main(int argc, char* args[]) {
 	SDL_Surface* message = NULL;
 
 	background = system.load_image("images/background.bmp");
-	message = system.load_image("images/hello.bmp");
+	message = system.load_image("images/sheep.bmp");
 
-	system.apply_surface(0,0,background, system.screen);
-	system.apply_surface(320, 0, background, system.screen);
-	system.apply_surface(0, 240, background, system.screen);
-	system.apply_surface(320, 240, background, system.screen);
+	system.fill_with_background(background,320,240);
+	
+	cout << "Background filled" << endl;
+	//system.apply_surface(0,0,background, system.screen);
+	//system.apply_surface(320, 0, background, system.screen);
+	//system.apply_surface(0, 240, background, system.screen);
+	//ystem.apply_surface(320, 240, background, system.screen);
 	system.apply_surface(180, 140, message, system.screen);
 	
 	SDL_Flip(system.screen);
