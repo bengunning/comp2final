@@ -7,27 +7,22 @@
 using namespace std;
 
 int main(int argc, char* args[]) {
-	Graphics system(1280,960,32);
+	Graphics system(1280,960,32); //Creates a 1280 by 960 window with 32 bits per pixel
 	bool quit = false;
 	SDL_Event e;	
 
 	//Images to load
 	SDL_Surface* background = NULL;
-	SDL_Surface* message = NULL;
+	SDL_Surface* sheep = NULL;
 
 	background = system.load_image("images/background.bmp");
-	message = system.load_image("images/sheep.bmp");
+	sheep = system.load_image("images/sheep.bmp");
 
-	system.fill_with_background(background,320,240);
+	//Draw surfaces to screen
+	system.fill_with_background(background,320,240);	
+	system.apply_surface(180, 140, sheep, system.getScreen());
 	
-	cout << "Background filled" << endl;
-	//system.apply_surface(0,0,background, system.screen);
-	//system.apply_surface(320, 0, background, system.screen);
-	//system.apply_surface(0, 240, background, system.screen);
-	//ystem.apply_surface(320, 240, background, system.screen);
-	system.apply_surface(180, 140, message, system.screen);
-	
-	SDL_Flip(system.screen);
+	SDL_Flip(system.getScreen());
 	
 	while(!quit) {
 		while(SDL_PollEvent(&e)!=0) {
@@ -38,7 +33,7 @@ int main(int argc, char* args[]) {
 	}
 
 	SDL_FreeSurface(background);
-	SDL_FreeSurface(message);
+	SDL_FreeSurface(sheep);
 	
         return 0; 
 }

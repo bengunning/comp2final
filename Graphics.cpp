@@ -38,6 +38,10 @@ int Graphics::getHeight() {
 	return screenHeight;
 }
 
+SDL_Surface *Graphics::getScreen() {
+	return screen;
+}
+
 void Graphics::fill_with_background(SDL_Surface* background, int width, int height) {
 	for(int xPos=0; xPos < getWidth(); xPos += width) {
 		for(int yPos=0; yPos < getHeight(); yPos += height) {

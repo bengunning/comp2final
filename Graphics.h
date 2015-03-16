@@ -16,11 +16,11 @@ public:
 	int getWidth(); //getter for screenWidth
 	int getHeight(); //getter for screenHeight
 	void fill_with_background(SDL_Surface*,int,int); //repeats a surface until it has filled a container vertically and horizontally
-
-	SDL_Surface* screen; //window to place other surfaces on
+	SDL_Surface *getScreen(); //getter for screen
 private:
 	void setup();
 
+	SDL_Surface* screen; //window to place other surfaces on
 	int screenWidth;  //width of window
 	int screenHeight; //height of window
 	int bpp; //bits per pixel
