@@ -28,9 +28,8 @@ int main(int argc, char* args[]) {
 	//Draw surfaces to screen
 	system.fill_with_background(background,320,240);	
 	system.apply_surface(180, 140, sheep, system.getScreen());
-	
 	SDL_Flip(system.getScreen());
-	
+
 	while(!quit) {
 		while(SDL_PollEvent(&e)!=0) {
 			if(e.type == SDL_QUIT) {

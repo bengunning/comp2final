@@ -57,6 +57,9 @@ SDL_Surface *Graphics::load_image(string filename) {
         if(loadedImage) {
                 optimizedImage = SDL_DisplayFormat(loadedImage);
                 SDL_FreeSurface(loadedImage);
+		//Color Keying
+		Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0xFF, 0xFF, 0xFF );
+		SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey );
         } else {
                 cout << "Could not load " << filename << endl;
         }
