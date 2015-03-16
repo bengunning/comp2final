@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -lSDL -lSDL_image
+CFLAGS = -lSDL -lSDL_image -lSDL_ttf
 PROGRAM = sheepHerder
 OBJECTS = main.o Sheep.o Graphics.o Herd.o
 

@@ -2,13 +2,14 @@
 
 #include "Sheep.h"
 #include "Graphics.h"
-#include "SDL/SDL.h"
 #include <iostream>
 using namespace std;
 
 int main(int argc, char* args[]) {
 	int width = 1280;
-	int height = 960;
+	int height = 900;
+	const int FONT_SIZE = 120;
+	const string CAPTION = "Sheep Herder";
 	if (argc == 3) { //if two arguments given
 		width = atoi(args[1]);
 		height = atoi(args[2]);
@@ -21,13 +22,17 @@ int main(int argc, char* args[]) {
 	//Images to load
 	SDL_Surface* background = NULL;
 	SDL_Surface* sheep = NULL;
+	SDL_Surface* title = NULL;
 
+	//initialize surfaces
 	background = system.load_image("images/grass.png");
 	sheep = system.load_image("images/sheep.bmp");
+	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
 
 	//Draw surfaces to screen
 	system.fill_with_background(background,256,256);	
 	system.apply_surface(180, 140, sheep, system.getScreen());
+	system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 	SDL_Flip(system.getScreen());
 
 	while(!quit) {

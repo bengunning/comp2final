@@ -8,6 +8,7 @@ using namespace std;
 
 void Graphics::setup() {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
 	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE);
 	SDL_WM_SetCaption("Sheep Herder",NULL);
 }
@@ -48,6 +49,15 @@ void Graphics::fill_with_background(SDL_Surface* background, int width, int heig
 			apply_surface(xPos,yPos,background,screen);
 		}
 	}
+}
+
+SDL_Surface *Graphics::load_text(string filename, string text, SDL_Color color, int fontSize) {
+	TTF_Font *font = NULL;
+	font = TTF_OpenFont(filename.c_str(),fontSize);
+
+	SDL_Surface *temp;
+	temp = TTF_RenderText_Solid(font,text.c_str(),color);
+	return temp;
 }
 
 SDL_Surface *Graphics::load_image(string filename) {
