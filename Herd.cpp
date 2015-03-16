@@ -20,3 +20,23 @@ void Herd::remove( Sheep sheep ) {
 		group.erase(ptr);
 	}
 }
+
+int Herd::xCenter() {
+	vector<Sheep>::iterator ptr;
+	int total = 0 , count = 0;
+	for (ptr = group.begin() ; ptr != group.end() ; ptr++) {
+		total += (*ptr).getX();
+		count++;
+	}
+	return total / count;
+}
+
+int Herd::yCenter() {
+	vector<Sheep>::iterator ptr;
+	int total = 0 , count = 0;
+	for (ptr = group.begin() ; ptr != group.end() ; ptr++) {
+		total += (*ptr).getY();
+		count++;
+	}
+	return total / count;
+}

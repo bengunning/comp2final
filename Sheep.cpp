@@ -14,3 +14,11 @@ int Sheep::operator==(const Sheep& another) {
 	}
 }
 // This definition of equality makes the assumption that different sheep cannot share the exact same horizontal and vertical coordinates
+
+int Sheep::getX() {
+	return xPos;
+}
+
+int Sheep::getY() {
+	return yPos;
+}
