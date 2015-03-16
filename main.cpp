@@ -7,7 +7,14 @@
 using namespace std;
 
 int main(int argc, char* args[]) {
-	Graphics system(1280,960,32); //Creates a 1280 by 960 window with 32 bits per pixel
+	int width = 1280;
+	int height = 960;
+	if (argc == 3) { //if two arguments given
+		width = atoi(args[1]);
+		height = atoi(args[2]);
+	}
+
+	Graphics system(width,height,32); //Creates a 1280 by 960 window with 32 bits per pixel
 	bool quit = false;
 	SDL_Event e;	
 
