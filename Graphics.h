@@ -4,6 +4,7 @@
 #define GRAPHICS_H
 
 #include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 #include <string>
 
 class Graphics {

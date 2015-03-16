@@ -22,11 +22,11 @@ int main(int argc, char* args[]) {
 	SDL_Surface* background = NULL;
 	SDL_Surface* sheep = NULL;
 
-	background = system.load_image("images/background.bmp");
+	background = system.load_image("images/grass.png");
 	sheep = system.load_image("images/sheep.bmp");
 
 	//Draw surfaces to screen
-	system.fill_with_background(background,320,240);	
+	system.fill_with_background(background,256,256);	
 	system.apply_surface(180, 140, sheep, system.getScreen());
 	SDL_Flip(system.getScreen());
 

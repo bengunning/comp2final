@@ -53,7 +53,8 @@ void Graphics::fill_with_background(SDL_Surface* background, int width, int heig
 SDL_Surface *Graphics::load_image(string filename) {
 	SDL_Surface * loadedImage = NULL;
         SDL_Surface * optimizedImage = NULL;
-        loadedImage = SDL_LoadBMP( filename.c_str() );
+        //loadedImage = SDL_LoadBMP( filename.c_str() );
+        loadedImage = IMG_Load( filename.c_str() );
         if(loadedImage) {
                 optimizedImage = SDL_DisplayFormat(loadedImage);
                 SDL_FreeSurface(loadedImage);
