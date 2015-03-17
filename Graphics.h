@@ -17,6 +17,7 @@ public:
 	SDL_Surface *load_image(std::string);
 	int getWidth(); //getter for screenWidth
 	int getHeight(); //getter for screenHeight
+	void resizeScreen(int,int);
 	void fill_with_background(SDL_Surface*,int,int); //repeats a surface until it has filled a container vertically and horizontally
 	SDL_Surface *getScreen(); //getter for screen
 	SDL_Surface *load_text(std::string,std::string,SDL_Color,int);

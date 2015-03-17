@@ -37,8 +37,19 @@ int main(int argc, char* args[]) {
 
 	while(!quit) {
 		while(SDL_PollEvent(&e)!=0) {
-			if(e.type == SDL_QUIT) {
-				quit = true;
+			switch(e.type) {
+				case SDL_QUIT:
+					quit = true;
+					break;
+				case SDL_VIDEORESIZE:
+					system.resizeScreen(e.resize.w,e.resize.h);
+					//redrawing the surfaces
+					system.fill_with_background(background,256,256);	
+					system.apply_surface(180, 140, sheep, system.getScreen());
+					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+					break;
+				default: 
+					break;
 			}
 		}
 	}

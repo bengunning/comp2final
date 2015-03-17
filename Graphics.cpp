@@ -9,7 +9,7 @@ using namespace std;
 void Graphics::setup() {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
-	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE);
+	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE | SDL_RESIZABLE);
 	SDL_WM_SetCaption("Sheep Herder",NULL);
 }
 
@@ -41,6 +41,12 @@ int Graphics::getHeight() {
 
 SDL_Surface *Graphics::getScreen() {
 	return screen;
+}
+
+void Graphics::resizeScreen(int width, int height) {
+	screenWidth = width;
+	screenHeight = height;
+	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE | SDL_RESIZABLE);
 }
 
 void Graphics::fill_with_background(SDL_Surface* background, int width, int height) {
