@@ -47,6 +47,13 @@ int main(int argc, char* args[]) {
 					system.fill_with_background(background,256,256);	
 					system.apply_surface(180, 140, sheep, system.getScreen());
 					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+					SDL_Flip(system.getScreen());
+					break;
+				case SDL_MOUSEMOTION:
+					system.fill_with_background(background,256,256);	
+					system.apply_surface(e.motion.x, e.motion.y, sheep, system.getScreen());
+					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+					SDL_Flip(system.getScreen());
 					break;
 				default: 
 					break;
