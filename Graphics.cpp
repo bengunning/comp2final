@@ -11,12 +11,17 @@ void Graphics::setup() {
 	TTF_Init();
 	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE | SDL_RESIZABLE);
 	SDL_WM_SetCaption("Sheep Herder",NULL);
+	SDL_WarpMouse(*xMousePos, *yMousePos); //Sets mouse to center of window
 }
 
 Graphics::Graphics() {
 	screenWidth = 640;
 	screenHeight = 480;
 	bpp = 32;
+	xMousePos = new int;
+	yMousePos = new int;
+	*xMousePos = getWidth()/2;
+	*yMousePos = getHeight()/2;
 	setup();
 }
 
@@ -24,7 +29,13 @@ Graphics::Graphics(int width, int height, int bits) :
 	screenWidth(width),
 	screenHeight(height),
 	bpp(bits)
-	{setup();}
+{
+	xMousePos = new int;
+	yMousePos = new int;
+	*xMousePos = getWidth()/2;
+	*yMousePos = getHeight()/2;
+	setup();
+}
 
 Graphics::~Graphics() {
 	SDL_FreeSurface(screen);
@@ -41,6 +52,14 @@ int Graphics::getHeight() {
 
 SDL_Surface *Graphics::getScreen() {
 	return screen;
+}
+
+int *Graphics::getXPos() {
+	return xMousePos;
+}
+
+int *Graphics::getYPos() {
+	return yMousePos;
 }
 
 void Graphics::resizeScreen(int width, int height) {
