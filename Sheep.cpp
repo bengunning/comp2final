@@ -33,8 +33,15 @@ void Sheep::handleEvents(SDL_Event* e) {
 		int xMouse, yMouse;
 		SDL_GetMouseState(&xMouse, &yMouse); // set x y mouse positions
 		direction = atan2(-(yPos - yMouse), (xPos - xMouse)); // negate y to accomodate for inverted coordinates. does pi/2 need to be
-		// the top of the screen
+		// the top of the screen?
+		// atan2 takes account of signs and returns proper radians among 2pi
 		speed += 100/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
 	}
 	
+}
+
+void Sheep::updatePos() {
+	// way to access size of screen?
+	xPos += speed*cos(direction);
+	yPos += speed*sin(direction);
 }
