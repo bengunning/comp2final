@@ -17,6 +17,8 @@ public:
 	SDL_Surface *load_image(std::string);
 	int getWidth(); //getter for screenWidth
 	int getHeight(); //getter for screenHeight
+	int *getXPos(); //getter for xMousePos
+	int *getYPos(); //getter for yMousePos
 	void resizeScreen(int,int);
 	void fill_with_background(SDL_Surface*,int,int); //repeats a surface until it has filled a container vertically and horizontally
 	SDL_Surface *getScreen(); //getter for screen
@@ -27,6 +29,8 @@ private:
 	SDL_Surface* screen; //window to place other surfaces on
 	int screenWidth;  //width of window
 	int screenHeight; //height of window
+	int * xMousePos; //x position of mouse
+	int * yMousePos; //y position of mouse
 	int bpp; //bits per pixel
 };
 

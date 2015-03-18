@@ -37,11 +37,11 @@ int main(int argc, char* args[]) {
 
 	while(!quit) {
 		while(SDL_PollEvent(&e)!=0) {
-			switch(e.type) {
-				case SDL_QUIT:
+			switch(e.type) { //e.type is the type of event on the top of the event queue
+				case SDL_QUIT: //red/X button pressed on window
 					quit = true;
 					break;
-				case SDL_VIDEORESIZE:
+				case SDL_VIDEORESIZE: //User drags the screen to a new size
 					system.resizeScreen(e.resize.w,e.resize.h);
 					//redrawing the surfaces
 					system.fill_with_background(background,256,256);	
@@ -49,11 +49,18 @@ int main(int argc, char* args[]) {
 					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 					SDL_Flip(system.getScreen());
 					break;
-				case SDL_MOUSEMOTION:
+				case SDL_MOUSEMOTION: //the mouse moves
 					system.fill_with_background(background,256,256);	
-					system.apply_surface(e.motion.x, e.motion.y, sheep, system.getScreen());
+					SDL_GetMouseState(system.getXPos(),system.getYPos());
+					system.apply_surface(*system.getXPos(), *system.getYPos(), sheep, system.getScreen());
 					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 					SDL_Flip(system.getScreen());
+					break;
+				case SDL_KEYDOWN: //a key is pressed
+					if(e.key.keysym.sym == SDLK_q) { //the 'q' key is pressed down
+						quit = true;
+						break;
+					}
 					break;
 				default: 
 					break;
