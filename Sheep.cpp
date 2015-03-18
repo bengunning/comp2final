@@ -32,10 +32,10 @@ void Sheep::handleEvents(SDL_Event* e) {
 	if (e->type == SDL_MOUSEBUTTONDOWN) { // user has clicked
 		int xMouse, yMouse;
 		SDL_GetMouseState(&xMouse, &yMouse); // set x y mouse positions
-		direction = atan2(-(yPos - yMouse), (xPos - xMouse)); // negate y to accomodate for inverted coordinates. does pi/2 need to be
-		// the top of the screen?
+		direction = atan2((yPos - yMouse), (xPos - xMouse)); // capture direction based on diference in coordinates
 		// atan2 takes account of signs and returns proper radians among 2pi
-		speed += 100/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
+		speed += 15 + 5/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
+		//closer the click, the more the speed increases, 50 minimum change
 	}
 	
 }
@@ -44,4 +44,9 @@ void Sheep::updatePos() {
 	// way to access size of screen?
 	xPos += speed*cos(direction);
 	yPos += speed*sin(direction);
+	
+	// velocity gradually changing
+	if (speed > 0) speed -= 1.25;
+	else speed = 0;
+	//else if (speed < 0) speed += 2;	
 }
