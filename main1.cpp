@@ -25,7 +25,7 @@ int main(int argc, char* args[]) {
 	SDL_Surface* title = NULL;
 
 	//initialize surfaces
-	background = system.load_image("images/grass.png");
+	background = system.load_image("images/plaid.png");
 	sheep = system.load_image("images/sheep.bmp");
 	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
 
