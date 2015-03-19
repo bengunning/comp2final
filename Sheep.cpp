@@ -34,7 +34,7 @@ void Sheep::handleEvents(SDL_Event* e) {
 		SDL_GetMouseState(&xMouse, &yMouse); // set x y mouse positions
 		direction = atan2((yPos - yMouse), (xPos - xMouse)); // capture direction based on diference in coordinates
 		// atan2 takes account of signs and returns proper radians among 2pi
-		speed += 15 + 5/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
+		speed += 10 + 20/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
 		//closer the click, the more the speed increases, 50 minimum change
 	}
 	

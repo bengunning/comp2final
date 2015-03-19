@@ -25,23 +25,24 @@ int main(int argc, char* args[]) {
 	SDL_Surface* title = NULL;
 
 	//initialize surfaces
-	background = system.load_image("images/grass.png");
+	background = system.load_image("images/plaid.png");
 	sheep = system.load_image("images/sheep.bmp");
 	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
 
 	//Draw surfaces to screen
 	system.fill_with_background(background,256,256);	
-	system.apply_surface(180, 140, sheep, system.getScreen());
+	Sheep shaun(180, 140, 0, 0, sheep); // speed and direction should probably be last 
+	system.apply_surface(shaun.getX(), shaun.getY(), sheep, system.getScreen());
 	system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 	SDL_Flip(system.getScreen());
 
 	while(!quit) {
 		while(SDL_PollEvent(&e)!=0) {
-			switch(e.type) { //e.type is the type of event on the top of the event queue
-				case SDL_QUIT: //red/X button pressed on window
+			switch(e.type) { 
+				case SDL_QUIT:
 					quit = true;
 					break;
-				case SDL_VIDEORESIZE: //User drags the screen to a new size
+				case SDL_VIDEORESIZE:
 					system.resizeScreen(e.resize.w,e.resize.h);
 					//redrawing the surfaces
 					system.fill_with_background(background,256,256);	
@@ -49,27 +50,23 @@ int main(int argc, char* args[]) {
 					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 					SDL_Flip(system.getScreen());
 					break;
-				case SDL_MOUSEMOTION: //the mouse moves
-					system.fill_with_background(background,256,256);	
-					SDL_GetMouseState(system.getXPos(),system.getYPos());
-					system.apply_surface(*system.getXPos(), *system.getYPos(), sheep, system.getScreen());
-					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
-					SDL_Flip(system.getScreen());
-					break;
-				case SDL_KEYDOWN: //a key is pressed
-					if(e.key.keysym.sym == SDLK_q) { //the 'q' key is pressed down
-						quit = true;
-						break;
-					}
+				case SDL_MOUSEBUTTONDOWN:		
+					shaun.handleEvents(&e);
 					break;
 				default: 
 					break;
 			}
 		}
+		
+		shaun.updatePos(); // modify position based on velocity
+		system.fill_with_background(background, 256, 256);
+		system.apply_surface(shaun.getX() - (shaun.getPicture()->w)/2, shaun.getY() - (shaun.getPicture()->h)/2, shaun.getPicture(), system.getScreen());
+		system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+		SDL_Flip(system.getScreen());
+		SDL_Delay(30);
 	}
 
 	SDL_FreeSurface(background);
-	SDL_FreeSurface(sheep);
 	
         return 0; 
 }
