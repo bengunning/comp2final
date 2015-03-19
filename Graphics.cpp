@@ -39,6 +39,8 @@ Graphics::Graphics(int width, int height, int bits) :
 
 Graphics::~Graphics() {
 	SDL_FreeSurface(screen);
+	delete xMousePos;
+	delete yMousePos;
 	SDL_Quit();
 }
 
