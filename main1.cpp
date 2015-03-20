@@ -30,7 +30,7 @@ int main(int argc, char* args[]) {
 	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
 
 	//Draw surfaces to screen
-	system.fill_with_background(background,256,256);	
+	system.fill_with_background(background,300,225);	
 	Sheep shaun(180, 140, 0, 0, sheep); // speed and direction should probably be last 
 	system.apply_surface(shaun.getX(), shaun.getY(), sheep, system.getScreen());
 	system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
@@ -45,7 +45,7 @@ int main(int argc, char* args[]) {
 				case SDL_VIDEORESIZE:
 					system.resizeScreen(e.resize.w,e.resize.h);
 					//redrawing the surfaces
-					system.fill_with_background(background,256,256);	
+					system.fill_with_background(background,300,225);	
 					system.apply_surface(180, 140, sheep, system.getScreen());
 					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 					SDL_Flip(system.getScreen());
@@ -59,7 +59,7 @@ int main(int argc, char* args[]) {
 		}
 		
 		shaun.updatePos(); // modify position based on velocity
-		system.fill_with_background(background, 256, 256);
+		system.fill_with_background(background, 300, 225);
 		system.apply_surface(shaun.getX(), shaun.getY(), shaun.getPicture(), system.getScreen());
 		system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 		SDL_Flip(system.getScreen());
