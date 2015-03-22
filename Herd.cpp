@@ -44,10 +44,10 @@ void Herd::shear( Sheep& sheep ) {
 
 // Calculate the return the horizontal average of all sheep in the group
 int Herd::xCenter() {
-	list<Sheep>::iterator it;
+	vector<vector<int> >::iterator it;
 	int total = 0 , count = 0;
-	for (it = group.begin() ; it != group.end() ; it++) {
-		total += (*it).getX();
+	for (it = locations.begin() ; it != locations.end() ; it++) {
+		total += (*it)[0];
 		count++;
 	}
 	return total / count;
@@ -55,10 +55,10 @@ int Herd::xCenter() {
 
 // Calculate the return the vertical average of all sheep in the group
 int Herd::yCenter() {
-	list<Sheep>::iterator it;
+	vector<vector<int> >::iterator it;
 	int total = 0 , count = 0;
-	for (it = group.begin() ; it != group.end() ; it++) {
-		total += (*it).getY();
+	for (it = locations.begin() ; it != locations.end() ; it++) {
+		total += (*it)[1];
 		count++;
 	}
 	return total / count;
