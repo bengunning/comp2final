@@ -2,10 +2,12 @@
 #define SHEEP_GRAPHICS_H
 
 #include "Graphics.h"
+#include "Herd.h"
 
 class SheepGraphics : public Graphics {
 public:
-	SheepGraphics(int w, int h, int b) : Graphics(w,h,b) {}
+	SheepGraphics(int, int, int);
+	void displayAll(Herd*);
 private:
 };
 
