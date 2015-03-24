@@ -28,10 +28,10 @@ Graphics::Graphics() {
 Graphics::Graphics(int width, int height, int bits) :
 	screenWidth(width),
 	screenHeight(height),
-	bpp(bits)
+	bpp(bits),
+	xMousePos(new int),
+	yMousePos(new int)
 {
-	xMousePos = new int;
-	yMousePos = new int;
 	*xMousePos = getWidth()/2;
 	*yMousePos = getHeight()/2;
 	setup();

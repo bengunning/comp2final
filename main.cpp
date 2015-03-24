@@ -1,6 +1,7 @@
 // Driver program for sheepHerder
 
 #include "Sheep.h"
+#include "Herd.h"
 #include "SheepGraphics.h"
 #include <iostream>
 using namespace std;
@@ -29,10 +30,16 @@ int main(int argc, char* args[]) {
 	sheep = system.load_image("images/sheep.bmp");
 	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
 
+	//Create herd of sheep
+	Herd herd;
+	Sheep shaun(180, 140, 0, 0, sheep); // speed and direction should probably be last 
+	Sheep katniss(400,400,0,0,sheep); // no initial speed
+	herd.bear(shaun);
+	herd.bear(katniss);
+
 	//Draw surfaces to screen
 	system.fill_with_background(background,300,225);	
-	Sheep shaun(180, 140, 0, 0, sheep); // speed and direction should probably be last 
-	system.apply_surface(shaun.getX(), shaun.getY(), sheep, system.getScreen());
+	system.displayAll(&herd);
 	system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 	SDL_Flip(system.getScreen());
 
@@ -46,21 +53,23 @@ int main(int argc, char* args[]) {
 					system.resizeScreen(e.resize.w,e.resize.h);
 					//redrawing the surfaces
 					system.fill_with_background(background,300,225);	
-					system.apply_surface(180, 140, sheep, system.getScreen());
+					system.displayAll(&herd);
 					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 					SDL_Flip(system.getScreen());
 					break;
 				case SDL_MOUSEBUTTONDOWN:		
-					shaun.handleEvents(&e);
+					//shaun.handleEvents(&e);
+					herd.handleAllEvents(&e);
 					break;
 				default: 
 					break;
 			}
 		}
 		
-		shaun.updatePos(); // modify position based on velocity
+		//shaun.updatePos(); // modify position based on velocity
+		herd.updateAll();
 		system.fill_with_background(background,300,225);
-		system.apply_surface(shaun.getX() - (shaun.getPicture()->w)/2, shaun.getY() - (shaun.getPicture()->h)/2, shaun.getPicture(), system.getScreen());
+		system.displayAll(&herd);
 		system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 		SDL_Flip(system.getScreen());
 		SDL_Delay(30);

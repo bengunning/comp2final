@@ -77,3 +77,7 @@ void Herd::updateAll()
       it->updatePos();
 }
 
+void Herd::handleAllEvents(SDL_Event* e) {
+   for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
+      it->handleEvents(e);
+}
