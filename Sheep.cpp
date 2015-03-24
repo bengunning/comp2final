@@ -8,9 +8,6 @@ Sheep::Sheep(int xPos, int yPos, double speed, double direction, SDL_Surface *pi
 	xPos(xPos), yPos(yPos), speed(speed), direction(direction), picture(pic)
 	{}
 
-Sheep::~Sheep() {
-	if (picture) SDL_FreeSurface(picture); // free the sheep's individual surface pointer, don't quit
-}
 SDL_Surface *Sheep::getPicture() {
 	return picture;
 }

@@ -11,7 +11,6 @@ class Sheep {
 public:
 	Sheep(int=0,int=0,double=0,double=0,SDL_Surface *pic = NULL); // Creates a sheep with a given position.
 						 // By default, a sheep is placed at the center of the screen facing right
-	~Sheep(); // Destructor to free the surface pointer
 	SDL_Surface *getPicture(); // return SDL_Surface of sheep pic to let graphics apply_surface draw it
 	// probably a felt or hand-knit image, or an image file with 72 different rotations, it depends on how we want to rotate
 	int operator==(const Sheep&); // Checks to see if two sheep share identical coordinates
