@@ -16,6 +16,6 @@ void SheepGraphics::displayAll(Herd * herd) {
 	SDL_Surface* sheep = NULL;
 	sheep = Graphics::load_image("images/sheep.bmp");
 	for(int i=0; i < locs.size(); i++) {
-		Graphics::apply_surface(locs[i][0],locs[i][1],sheep,Graphics::getScreen());
+		Graphics::apply_surface(locs[i][0]-25,locs[i][1]-27,sheep,Graphics::getScreen());
 	}
 }
