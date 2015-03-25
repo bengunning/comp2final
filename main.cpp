@@ -31,11 +31,7 @@ int main(int argc, char* args[]) {
 	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
 
 	//Create herd of sheep
-	Herd herd;
-	Sheep shaun(180, 140, 0, 0, sheep); // speed and direction should probably be last 
-	Sheep katniss(400,400,10,0,sheep); // no initial speed
-	herd.bear(shaun);
-	herd.bear(katniss);
+	Herd herd("Herd.txt",sheep);
 
 	//Draw surfaces to screen
 	system.fill_with_background(background,300,225);	

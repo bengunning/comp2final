@@ -3,7 +3,11 @@
  * Remove removes a given sheep from the herd
  */
 
-#include"Herd.h"
+#include "Herd.h"
+#include "Sheep.h"
+#include <fstream>
+#include <string>
+#include "SDL/SDL.h"
 using namespace std;
 
 // Constructor 
@@ -12,6 +16,21 @@ Herd::Herd()
    list<Sheep> group;
    numSheep = 0;
    vector<vector<int> > locations;
+}
+
+Herd::Herd(string fileName, SDL_Surface *pic) {
+	list<Sheep> group;
+	numSheep = 0;
+	vector<vector<int> > locations;
+
+	int xPos, yPos;
+	double speed, direction;
+	ifstream file(fileName.c_str());
+	while (file >> xPos >> yPos >> speed >> direction) {
+		Sheep temp(xPos,yPos,speed,direction,pic);
+		bear(temp);
+	}
+	file.close();
 }
 
 // Add a sheep to the end of the group list
