@@ -13,9 +13,15 @@ SheepGraphics::SheepGraphics(int width, int height, int bpp) :
 void SheepGraphics::displayAll(Herd * herd) {
 	vector<vector<int> > locs;
 	locs = herd->getAllLocations();
-	SDL_Surface* sheep = NULL;
-	sheep = Graphics::load_image("images/sheep.bmp");
+	SDL_Surface* sheep_left = NULL;
+	SDL_Surface* sheep_right = NULL;
+	sheep_left = Graphics::load_image("images/sheep.bmp");
+	sheep_right = Graphics::load_image("images/sheep_00.bmp");
 	for(int i=0; i < locs.size(); i++) {
-		Graphics::apply_surface(locs[i][0]-25,locs[i][1]-27,sheep,Graphics::getScreen());
+		if(i%2) {
+			Graphics::apply_surface(locs[i][0]-25,locs[i][1]-27,sheep_right,Graphics::getScreen());
+		} else {
+			Graphics::apply_surface(locs[i][0]-25,locs[i][1]-27,sheep_left,Graphics::getScreen());
+		}
 	}
 }
