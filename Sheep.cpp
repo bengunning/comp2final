@@ -1,5 +1,6 @@
 // Implementation of class Sheep
 
+#include <iostream> //for debugging
 #include "Sheep.h"
 #include "SDL/SDL.h"
 #include <cmath> // for calculating direction radians from coordinates
@@ -38,16 +39,22 @@ void Sheep::handleEvents(SDL_Event* e) {
 }
 
 void Sheep::updatePos(int screenWidth, int screenHeight) {
+	//Update the direction randomly
+	double directionChange = (rand() % 49 - 25) * 2 * M_PI / 360.0; //random radian between -25 and 25 degrees
+	direction += directionChange;
+
+	//Update the speed randomly
+	int acceleration = rand() % 4 - 2; //random number between -2 and 1
+	speed += acceleration / 2.0;
+	if(speed < 0) speed = 0;
+
+	//Update position
 	xPos += speed*cos(direction);
 	yPos += speed*sin(direction);
 
+	//Make sure sheep stay within window bounds
 	if(xPos < 0) xPos = 0;
 	if(yPos < 0) yPos = 0;
 	if(xPos > screenWidth) xPos = screenWidth;
 	if(yPos > screenHeight) yPos = screenHeight;
-
-	// velocity gradually changing
-	if (speed > 0) speed -= 1.25;
-	else speed = 0;
-	//else if (speed < 0) speed += 2;	
 }
