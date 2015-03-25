@@ -33,7 +33,7 @@ int main(int argc, char* args[]) {
 	//Create herd of sheep
 	Herd herd;
 	Sheep shaun(180, 140, 0, 0, sheep); // speed and direction should probably be last 
-	Sheep katniss(400,400,0,0,sheep); // no initial speed
+	Sheep katniss(400,400,10,0,sheep); // no initial speed
 	herd.bear(shaun);
 	herd.bear(katniss);
 
