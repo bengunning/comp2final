@@ -20,7 +20,7 @@ class Herd {
       int xCenter();		    // Calculate and return the horizontal average position of all sheep in the group
       int yCenter();		    // Calculate and return the vertical average position of all sheep in the group
       vector<vector<int> > getAllLocations();   // Return locations of all the sheep in the group list
-      void updateAll();			     // Call updatePos() function for all sheep in the group list
+      void updateAll(int,int);			     // Call updatePos() function for all sheep in the group list
       void handleAllEvents(SDL_Event*);
    private:
       list<Sheep> group;	       // list of sheep

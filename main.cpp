@@ -66,8 +66,7 @@ int main(int argc, char* args[]) {
 			}
 		}
 		
-		//shaun.updatePos(); // modify position based on velocity
-		herd.updateAll();
+		herd.updateAll(system.getWidth(),system.getHeight());
 		system.fill_with_background(background,300,225);
 		system.displayAll(&herd);
 		system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());

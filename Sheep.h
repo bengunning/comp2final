@@ -17,7 +17,7 @@ public:
 	int getX(); // X and Y coordinates will give apply_surface the proper offset. 
 	int getY();
 	void handleEvents(SDL_Event*); // handle mouse clicks, updating velocity
-	void updatePos(); // update next position based on speed and direction.
+	void updatePos(int,int); // update next position based on speed and direction.
 private:
 	int xPos, yPos; // A sheeps position within a window.
 	double speed; // holds the speed of a sheep. Must be a positive value, 0 if not in motion

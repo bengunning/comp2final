@@ -71,11 +71,11 @@ vector<vector<int> > Herd::getAllLocations()
 }
 
 // Call updatePos() function for all sheep in the group list
-void Herd::updateAll()
+void Herd::updateAll(int screenWidth, int screenHeight)
 {
    int i = 0;
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++) {
-      it->updatePos();
+      it->updatePos(screenWidth, screenHeight);
       locations[i][0] = it->getX();
       locations[i][1] = it->getY();
       // update locations vector along with each sheep. using random access

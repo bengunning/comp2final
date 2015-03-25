@@ -37,11 +37,15 @@ void Sheep::handleEvents(SDL_Event* e) {
 	
 }
 
-void Sheep::updatePos() {
-	// way to access size of screen?
+void Sheep::updatePos(int screenWidth, int screenHeight) {
 	xPos += speed*cos(direction);
 	yPos += speed*sin(direction);
-	
+
+	if(xPos < 0) xPos = 0;
+	if(yPos < 0) yPos = 0;
+	if(xPos > screenWidth) xPos = screenWidth;
+	if(yPos > screenHeight) yPos = screenHeight;
+
 	// velocity gradually changing
 	if (speed > 0) speed -= 1.25;
 	else speed = 0;
