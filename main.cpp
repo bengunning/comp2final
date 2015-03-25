@@ -54,8 +54,13 @@ int main(int argc, char* args[]) {
 					SDL_Flip(system.getScreen());
 					break;
 				case SDL_MOUSEBUTTONDOWN:		
-					//shaun.handleEvents(&e);
 					herd.handleAllEvents(&e);
+					break;
+				case SDL_KEYDOWN: //a key is pressed
+					if(e.key.keysym.sym == SDLK_q) { //the 'q' key is pressed down
+						quit = true;
+						break;
+					}
 					break;
 				default: 
 					break;
