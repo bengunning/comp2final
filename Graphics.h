@@ -10,8 +10,7 @@
 
 class Graphics {
 public:
-	Graphics(); //makes a 640 by 480 window
-	Graphics(int,int,int); //takes in a width,height,and bpp
+	Graphics(int = 640,int = 480,int = 32); // construct a window with default values
 	~Graphics();
 	void apply_surface(int,int,SDL_Surface*,SDL_Surface*);
 	SDL_Surface *load_image(std::string);

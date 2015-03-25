@@ -14,17 +14,6 @@ void Graphics::setup() {
 	SDL_WarpMouse(*xMousePos, *yMousePos); //Sets mouse to center of window
 }
 
-Graphics::Graphics() {
-	screenWidth = 640;
-	screenHeight = 480;
-	bpp = 32;
-	xMousePos = new int;
-	yMousePos = new int;
-	*xMousePos = getWidth()/2;
-	*yMousePos = getHeight()/2;
-	setup();
-}
-
 Graphics::Graphics(int width, int height, int bits) :
 	screenWidth(width),
 	screenHeight(height),
