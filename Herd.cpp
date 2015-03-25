@@ -16,12 +16,14 @@ Herd::Herd()
    list<Sheep> group;
    numSheep = 0;
    vector<vector<int> > locations;
+   vector<double> directions;
 }
 
 Herd::Herd(string fileName, SDL_Surface *pic) {
 	list<Sheep> group;
 	numSheep = 0;
 	vector<vector<int> > locations;
+	vector<double> directions;
 
 	int xPos, yPos;
 	double speed, direction;
@@ -43,6 +45,7 @@ void Herd::bear( Sheep& sheep )
    temp.push_back(sheep.getX());
    temp.push_back(sheep.getY());
    locations.push_back(temp);
+   directions.push_back(0);
 }
 
 // Remove a particular sheep from the group list
@@ -56,8 +59,10 @@ void Herd::shear( Sheep& sheep ) {
       numSheep --;
       // remove the location of sheep from vector locations	 
       for(int i = 0; i < numSheep; i ++)
-	 if(locations[i][0] == sheep.getX() && locations[i][1] == sheep.getY())
+	 if(locations[i][0] == sheep.getX() && locations[i][1] == sheep.getY()) {
 	    locations.erase(locations.begin() + i);
+            directions.erase(directions.begin() + i);
+         }
    }
 }
 
@@ -89,6 +94,10 @@ vector<vector<int> > Herd::getAllLocations()
    return locations;
 }
 
+vector<double> Herd::getAllDirections() {
+	return directions;
+}
+
 // Call updatePos() function for all sheep in the group list
 void Herd::updateAll(int screenWidth, int screenHeight)
 {
@@ -98,6 +107,7 @@ void Herd::updateAll(int screenWidth, int screenHeight)
       locations[i][0] = it->getX();
       locations[i][1] = it->getY();
       // update locations vector along with each sheep. using random access
+      directions[i] = it->getDirection();
       i++;
    }
       

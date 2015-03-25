@@ -25,6 +25,10 @@ int Sheep::getY() {
 	return yPos;
 }
 
+double Sheep::getDirection() {
+	return direction;
+}
+
 void Sheep::handleEvents(SDL_Event* e) {
 
 	if (e->type == SDL_MOUSEBUTTONDOWN) { // user has clicked

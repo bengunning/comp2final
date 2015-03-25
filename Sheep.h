@@ -16,6 +16,7 @@ public:
 	int operator==(const Sheep&); // Checks to see if two sheep share identical coordinates
 	int getX(); // X and Y coordinates will give apply_surface the proper offset. 
 	int getY();
+	double getDirection();
 	void handleEvents(SDL_Event*); // handle mouse clicks, updating velocity
 	void updatePos(int,int); // update next position based on speed and direction.
 private:
