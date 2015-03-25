@@ -73,8 +73,15 @@ vector<vector<int> > Herd::getAllLocations()
 // Call updatePos() function for all sheep in the group list
 void Herd::updateAll()
 {
-   for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
+   int i = 0;
+   for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++) {
       it->updatePos();
+      locations[i][0] = it->getX();
+      locations[i][1] = it->getY();
+      // update locations vector along with each sheep. using random access
+      i++;
+   }
+      
 }
 
 void Herd::handleAllEvents(SDL_Event* e) {
