@@ -72,8 +72,9 @@ SDL_Surface *Graphics::load_text(string filename, string text, SDL_Color color, 
 	font = TTF_OpenFont(filename.c_str(),fontSize);
 
 	SDL_Surface *temp;
-	temp = TTF_RenderText_Solid(font,text.c_str(),color);
-	return temp;
+	//temp = TTF_RenderText_Solid(font,text.c_str(),color);
+	//return temp;
+	return TTF_RenderText_Solid(font,text.c_str(),color);
 }
 
 SDL_Surface *Graphics::load_image(string filename) {

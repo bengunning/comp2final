@@ -8,7 +8,9 @@ class SheepGraphics : public Graphics {
 public:
 	SheepGraphics(int, int, int);
 	void displayAll(Herd*);
+	void loadPics();
 private:
+	vector<SDL_Surface*> sheepPics;
 };
 
 #endif

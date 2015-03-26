@@ -7,7 +7,10 @@
 
 Sheep::Sheep(int xPos, int yPos, double speed, double direction, SDL_Surface *pic):
 	xPos(xPos), yPos(yPos), speed(speed), direction(direction), picture(pic)
-	{}
+	{
+		while(direction < 0) direction += 2 * M_PI;
+		while(direction > 2 * M_PI) direction -= 2 * M_PI;
+	}
 
 SDL_Surface *Sheep::getPicture() {
 	return picture;
@@ -46,6 +49,8 @@ void Sheep::updatePos(int screenWidth, int screenHeight) {
 	//Update the direction randomly
 	double directionChange = (rand() % 49 - 25) * 2 * M_PI / 360.0; //random radian between -25 and 25 degrees
 	direction += directionChange;
+	while(direction < 0) direction += 2 * M_PI;
+	while(direction > 2 * M_PI) direction -= 2 * M_PI;
 
 	//Update the speed randomly
 	int acceleration = rand() % 4 - 2; //random number between -2 and 1

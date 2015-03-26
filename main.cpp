@@ -24,6 +24,7 @@ int main(int argc, char* args[]) {
 	SDL_Surface* background = NULL;
 	SDL_Surface* sheep = NULL;
 	SDL_Surface* title = NULL;
+	system.loadPics();
 
 	//initialize surfaces
 	background = system.load_image("images/plaid.png");
