@@ -22,10 +22,6 @@ void SheepGraphics::displayAll(Herd * herd) {
 	double direction; // which picture to use
 	locs = herd->getAllLocations();
 	dirs = herd->getAllDirections();
-	SDL_Surface* sheep_left = NULL;
-	SDL_Surface* sheep_right = NULL;
-	sheep_left = Graphics::load_image("images/sheep_180.bmp");
-	sheep_right = Graphics::load_image("images/sheep_00.bmp");
 	for(int i=0; i < locs.size(); i++) {
 		//Here we will determine the sheep image to use based on the value of that sheeps direction
 		//There are multiple pictures of the sheep, each one rotated 15 degrees from another

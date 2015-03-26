@@ -19,7 +19,7 @@ Herd::Herd()
    vector<double> directions;
 }
 
-Herd::Herd(string fileName, SDL_Surface *pic) {
+Herd::Herd(string fileName) {
 	list<Sheep> group;
 	numSheep = 0;
 	vector<vector<int> > locations;
@@ -29,7 +29,7 @@ Herd::Herd(string fileName, SDL_Surface *pic) {
 	double speed, direction;
 	ifstream file(fileName.c_str());
 	while (file >> xPos >> yPos >> speed >> direction) {
-		Sheep temp(xPos,yPos,speed,direction,pic);
+		Sheep temp(xPos,yPos,speed,direction);
 		bear(temp);
 	}
 	file.close();

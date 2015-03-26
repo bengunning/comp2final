@@ -17,7 +17,7 @@ using namespace std;
 class Herd {
    public:
       Herd();	     		    // Constructor
-      Herd(string, SDL_Surface*);		    // Constructor with a filename
+      Herd(string);		    // Constructor with a filename
       void bear( Sheep& );	    // Add a sheep to the end of the group list
       void shear( Sheep& );	    // Remove a particular sheep from the group list
       int xCenter();		    // Calculate and return the horizontal average position of all sheep in the group

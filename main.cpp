@@ -22,17 +22,15 @@ int main(int argc, char* args[]) {
 
 	//Images to load
 	SDL_Surface* background = NULL;
-	SDL_Surface* sheep = NULL;
 	SDL_Surface* title = NULL;
 	system.loadPics();
 
 	//initialize surfaces
 	background = system.load_image("images/plaid.png");
-	sheep = system.load_image("images/sheep.bmp");
 	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
 
 	//Create herd of sheep
-	Herd herd("Herd.txt",sheep);
+	Herd herd("Herd.txt");
 
 	//Draw surfaces to screen
 	system.fill_with_background(background,300,225);	

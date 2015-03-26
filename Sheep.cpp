@@ -5,16 +5,13 @@
 #include "SDL/SDL.h"
 #include <cmath> // for calculating direction radians from coordinates
 
-Sheep::Sheep(int xPos, int yPos, double speed, double direction, SDL_Surface *pic):
-	xPos(xPos), yPos(yPos), speed(speed), direction(direction), picture(pic)
+Sheep::Sheep(int xPos, int yPos, double speed, double direction):
+	xPos(xPos), yPos(yPos), speed(speed), direction(direction)
 	{
 		while(direction < 0) direction += 2 * M_PI;
 		while(direction > 2 * M_PI) direction -= 2 * M_PI;
 	}
 
-SDL_Surface *Sheep::getPicture() {
-	return picture;
-}
 int Sheep::operator==(const Sheep& another) {
 	return (xPos == another.xPos && yPos == another.yPos); 
 }
@@ -46,16 +43,18 @@ void Sheep::handleEvents(SDL_Event* e) {
 }
 
 void Sheep::updatePos(int screenWidth, int screenHeight) {
-	//Update the direction randomly
-	double directionChange = (rand() % 49 - 25) * 2 * M_PI / 360.0; //random radian between -25 and 25 degrees
-	direction += directionChange;
-	while(direction < 0) direction += 2 * M_PI;
-	while(direction > 2 * M_PI) direction -= 2 * M_PI;
-
 	//Update the speed randomly
-	int acceleration = rand() % 4 - 2; //random number between -2 and 1
+	int acceleration = rand() % 3 - 2; //random number between -2 and 0
 	speed += acceleration / 2.0;
 	if(speed < 0) speed = 0;
+
+	//Update the direction randomly but only if the sheep is moving
+	if(speed>0) {
+		double directionChange = (rand() % 49 - 25) * 2 * M_PI / 360.0; //random radian between -25 and 25 degrees
+		direction += directionChange;
+		while(direction < 0) direction += 2 * M_PI;
+		while(direction > 2 * M_PI) direction -= 2 * M_PI;
+	}	
 
 	//Update position
 	xPos += speed*cos(direction);
