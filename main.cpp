@@ -11,6 +11,13 @@ int main(int argc, char* args[]) {
 	int height = 900;
 	const int FONT_SIZE = 120;
 	const string CAPTION = "Sheep Herder";
+
+	//Framerate control
+	const int FRAMERATE = 60;
+	int frame = 0; //holds the current frame
+	bool cap = true; //determines if the frame rate should be used
+	int startTime = 0;
+
 	if (argc == 3) { //if two arguments given
 		width = atoi(args[1]);
 		height = atoi(args[2]);
@@ -39,6 +46,7 @@ int main(int argc, char* args[]) {
 	SDL_Flip(system.getScreen());
 
 	while(!quit) {
+		startTime = SDL_GetTicks();
 		while(SDL_PollEvent(&e)!=0) {
 			switch(e.type) { 
 				case SDL_QUIT:
@@ -71,7 +79,12 @@ int main(int argc, char* args[]) {
 		system.displayAll(&herd);
 		system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 		SDL_Flip(system.getScreen());
-		SDL_Delay(30);
+		//SDL_Delay(30);
+		frame++;
+		if( ( cap == true ) && ( SDL_GetTicks() - startTime < 1000 / FRAMERATE ) ) {
+            		//Sleep the remaining frame time
+                        SDL_Delay( ( 1000 / FRAMERATE ) - SDL_GetTicks() + startTime );
+                }
 	}
 
 	SDL_FreeSurface(background);
