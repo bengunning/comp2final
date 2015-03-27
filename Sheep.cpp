@@ -94,6 +94,7 @@ void Sheep::updateDir() {
 		direction += M_PI / 8.0;
 		if(direction > M_PI * 2) direction -= M_PI * 2;
 	}
+	
 }
 
 void Sheep::updateSpeed(double s) {
