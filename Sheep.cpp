@@ -54,7 +54,7 @@ void Sheep::updatePos(int screenWidth, int screenHeight) {
 		direction += directionChange;
 		while(direction < 0) direction += 2 * M_PI;
 		while(direction > 2 * M_PI) direction -= 2 * M_PI;
-	}	
+	}
 
 	//Update position
 	xPos += speed*cos(direction);

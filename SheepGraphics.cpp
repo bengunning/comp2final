@@ -33,6 +33,8 @@ void SheepGraphics::displayAll(Herd * herd) {
 			direction -= 15;
 		}
 
+		if(count >= sheepPics.size()) count = 0; //Fix possible error when angle very close to 360
+
 		Graphics::apply_surface(locs[i][0]-25,locs[i][1]-27,sheepPics[count],Graphics::getScreen());
 		
 	}
