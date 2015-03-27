@@ -29,6 +29,10 @@ double Sheep::getDirection() {
 	return direction;
 }
 
+double Sheep::getSpeed() {
+	return speed;
+}
+
 void Sheep::handleEvents(SDL_Event* e) {
 
 	if (e->type == SDL_MOUSEBUTTONDOWN) { // user has clicked
@@ -65,4 +69,12 @@ void Sheep::updatePos(int screenWidth, int screenHeight) {
 	if(yPos < 0) yPos = 0;
 	if(xPos > screenWidth) xPos = screenWidth;
 	if(yPos > screenHeight) yPos = screenHeight;
+}
+
+void Sheep::updateSpeed(double s) {
+	
+	double weight = 3/4; //weight given to interpolation, changes more quickly if closer to one.
+	
+	speed += (s - speed)*weight;
+
 }

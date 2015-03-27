@@ -18,9 +18,11 @@ public:
 	double getDirection();
 	void handleEvents(SDL_Event*); // handle mouse clicks, updating velocity
 	void updatePos(int,int); // update next position based on speed and direction.
+	void updateSpeed(double s); // tend towards the new velocity,
 private:
 	int xPos, yPos; // A sheeps position within a window.
 	double speed; // holds the speed of a sheep. Must be a positive value, 0 if not in motion
+	double getSpeed(); // needed to calculate average speeds
 	double direction; // A cartesian direction in radians. 0 is to the right of the screen, pi/2 is the top of the screen, etc.
 };
 
