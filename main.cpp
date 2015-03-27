@@ -7,13 +7,14 @@
 using namespace std;
 
 int main(int argc, char* args[]) {
-	int width = 1280;
-	int height = 900;
-	const int FONT_SIZE = 120;
-	const string CAPTION = "Sheep Herder";
+	int width = 1280; //default screen width
+	int height = 900; //default screen height
+	const int FONT_SIZE = 120;                // Font and Text to be placed in
+	const string CAPTION = "Sheep Herder";    // the bottom right corner of the screen
+	const SDL_Color WHITE = {255,255,255}; //rgb value
 
 	//Framerate control
-	const int FRAMERATE = 60;
+	const int FRAMERATE = 60; //frames per second
 	int frame = 0; //holds the current frame
 	bool cap = true; //determines if the frame rate should be used
 	int startTime = 0;
@@ -30,14 +31,14 @@ int main(int argc, char* args[]) {
 	//Images to load
 	SDL_Surface* background = NULL;
 	SDL_Surface* title = NULL;
-	system.loadPics();
+	system.loadPics(); //loads the rotated pictures of sheep into a vector of SDL_Surfaces
 
 	//initialize surfaces
 	background = system.load_image("images/plaid.png");
-	title = system.load_text("fonts/fancy.ttf",CAPTION,(SDL_Color){255,255,255},FONT_SIZE);
+	title = system.load_text("fonts/fancy.ttf",CAPTION,WHITE,FONT_SIZE);
 
 	//Create herd of sheep
-	Herd herd("Herd.txt");
+	Herd herd("Herd.txt"); //reads in Sheep objects from a text file
 
 	//Draw surfaces to screen
 	system.fill_with_background(background,300,225);	
