@@ -88,6 +88,16 @@ int Herd::yCenter() {
 	return total / count;
 }
 
+double Herd::speed() {
+	list<Sheep>::iterator it;
+	double sum = 0;
+	int count = 0;
+	for (it = group.begin(); it != group.end(); it++) {
+		sum += it->getSpeed();
+		count++;
+	}
+	return sum/count;
+}
 // Return locations of all sheep in the group list
 vector<vector<int> > Herd::getAllLocations()
 {
@@ -104,6 +114,7 @@ void Herd::updateAll(int screenWidth, int screenHeight)
    int i = 0;
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++) {
       it->updatePos(screenWidth, screenHeight);
+      it->updateSpeed(speed());
       locations[i][0] = it->getX();
       locations[i][1] = it->getY();
       // update locations vector along with each sheep. using random access
