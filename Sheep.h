@@ -6,6 +6,8 @@
 #ifndef SHEEP_H
 #define SHEEP_H
 #include "SDL/SDL.h"
+#include <vector>
+using namespace std;
 
 class Sheep {
 public:
@@ -18,8 +20,8 @@ public:
 	double getDirection();
 	double getSpeed(); // needed to calculate average speeds
 	void handleEvents(SDL_Event*); // handle mouse clicks, updating velocity
-	void updatePos(int,int); // update next position based on speed and direction.
-	void updateDir(); //turns towards a direction in radians
+	void updatePos(int,int, vector<vector<int> >); // update next position based on speed and direction.
+	void updateDir(vector<vector<int> >); //turns towards a direction in radians
 	void updateSpeed(double s); // tend towards the new velocity,
 private:
 	int xPos, yPos; // A sheeps position within a window.

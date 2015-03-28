@@ -113,7 +113,7 @@ void Herd::updateAll(int screenWidth, int screenHeight)
 {
    int i = 0;
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++) {
-      it->updatePos(screenWidth, screenHeight);
+      it->updatePos(screenWidth, screenHeight, locations);
       it->updateSpeed(speed());
       locations[i][0] = it->getX();
       locations[i][1] = it->getY();
