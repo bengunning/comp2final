@@ -47,6 +47,11 @@ int main(int argc, char* args[]) {
 	SDL_Flip(system.getScreen());
 
 	while(!quit) {
+		//Update desired directions to center of herd every 6 frames
+		if(frame % 6) {
+			herd.faceAll(300,300);
+		}
+
 		startTime = SDL_GetTicks();
 		while(SDL_PollEvent(&e)!=0) {
 			switch(e.type) { 

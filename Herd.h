@@ -27,6 +27,7 @@ class Herd {
       vector<double> getAllDirections();           // Return directions of all the sheep in the group list
       void updateAll(int,int);			     // Call updatePos() function for all sheep in the group list
       void handleAllEvents(SDL_Event*);
+      void faceAll(int,int);           //Turn to face a coordinate
    private:
       list<Sheep> group;	       // list of sheep
       int numSheep;		       // number of sheep in the list

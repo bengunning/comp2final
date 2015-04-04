@@ -21,8 +21,9 @@ public:
 	double getSpeed(); // needed to calculate average speeds
 	void handleEvents(SDL_Event*); // handle mouse clicks, updating velocity
 	void updatePos(int,int, vector<vector<int> >); // update next position based on speed and direction.
-	void updateDir(vector<vector<int> >); //turns towards a direction in radians
+	void updateDir(vector<vector<int> >); //turns towards a desired direction in radians
 	void updateSpeed(double s); // tend towards the new velocity,
+	void face(int,int); //turns towards a given point
 private:
 	int xPos, yPos; // A sheeps position within a window.
 	double speed; // holds the speed of a sheep. Must be a positive value, 0 if not in motion
