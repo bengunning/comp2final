@@ -105,6 +105,7 @@ void Herd::updateAll(int screenWidth, int screenHeight)
 }
 
 void Herd::handleAllEvents(SDL_Event* e) {
+   SDL_GetMouseState(&xCenter,&yCenter);
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
       it->handleEvents(e);
 }
