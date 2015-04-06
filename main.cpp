@@ -30,11 +30,13 @@ int main(int argc, char* args[]) {
 
 	//Images to load
 	SDL_Surface* background = NULL;
+	SDL_Surface* centerX = NULL;
 	SDL_Surface* title = NULL;
 	system.loadPics(); //loads the rotated pictures of sheep into a vector of SDL_Surfaces
 
 	//initialize surfaces
 	background = system.load_image("images/plaid.png");
+	centerX = system.load_image("images/centerX.png");
 	title = system.load_text("fonts/fancy.ttf",CAPTION,WHITE,FONT_SIZE);
 
 	//Create herd of sheep
@@ -44,6 +46,7 @@ int main(int argc, char* args[]) {
 	system.fill_with_background(background,300,225);	
 	system.displayAll(&herd);
 	system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());
 	SDL_Flip(system.getScreen());
 
 	while(!quit) {
@@ -62,6 +65,7 @@ int main(int argc, char* args[]) {
 					system.resizeScreen(e.resize.w,e.resize.h);
 					//redrawing the surfaces
 					system.fill_with_background(background,300,225);	
+					system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());
 					system.displayAll(&herd);
 					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 					SDL_Flip(system.getScreen());
@@ -82,6 +86,7 @@ int main(int argc, char* args[]) {
 		
 		herd.updateAll(system.getWidth(),system.getHeight());
 		system.fill_with_background(background,300,225);
+		system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());
 		system.displayAll(&herd);
 		system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 		SDL_Flip(system.getScreen());
