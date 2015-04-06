@@ -13,10 +13,11 @@ using namespace std;
 // Constructor 
 Herd::Herd()
 {
-   list<Sheep> group;
-   numSheep = 0;
-   vector<vector<int> > locations;
-   vector<double> directions;
+	list<Sheep> group;
+	numSheep = 0;
+	vector<vector<int> > locations;
+	vector<double> directions;
+	xCenter = yCenter = 300;
 }
 
 Herd::Herd(string fileName) {
@@ -24,9 +25,10 @@ Herd::Herd(string fileName) {
 	numSheep = 0;
 	vector<vector<int> > locations;
 	vector<double> directions;
+        xCenter = yCenter = 300;
 
-	int xPos, yPos;
-	double speed, direction;
+	int xPos, yPos; //temp variables 
+	double speed, direction; //temp variables
 	ifstream file(fileName.c_str());
 	while (file >> xPos >> yPos >> speed >> direction) {
 		Sheep temp(xPos,yPos,speed,direction);
@@ -64,28 +66,6 @@ void Herd::shear( Sheep& sheep ) {
             directions.erase(directions.begin() + i);
          }
    }
-}
-
-// Calculate the return the horizontal average of all sheep in the group
-int Herd::xCenter() {
-	vector<vector<int> >::iterator it;
-	int total = 0 , count = 0;
-	for (it = locations.begin() ; it != locations.end() ; it++) {
-		total += (*it)[0];
-		count++;
-	}
-	return total / count;
-}
-
-// Calculate the return the vertical average of all sheep in the group
-int Herd::yCenter() {
-	vector<vector<int> >::iterator it;
-	int total = 0 , count = 0;
-	for (it = locations.begin() ; it != locations.end() ; it++) {
-		total += (*it)[1];
-		count++;
-	}
-	return total / count;
 }
 
 double Herd::speed() {
@@ -132,4 +112,12 @@ void Herd::handleAllEvents(SDL_Event* e) {
 void Herd::faceAll(int x, int y) {
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
       it->face(x,y);
+}
+
+int Herd::getXCenter() {
+	return xCenter;
+}
+
+int Herd::getYCenter() {
+	return yCenter;
 }

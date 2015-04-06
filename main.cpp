@@ -49,7 +49,7 @@ int main(int argc, char* args[]) {
 	while(!quit) {
 		//Update desired directions to center of herd every 6 frames
 		if(frame % 6) {
-			herd.faceAll(300,300);
+			herd.faceAll(herd.getXCenter(),herd.getYCenter());
 		}
 
 		startTime = SDL_GetTicks();
