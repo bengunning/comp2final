@@ -1,6 +1,7 @@
 // Implementation of class Sheep
 
 #include <iostream> //for debugging
+#include <climits>
 #include "Sheep.h"
 #include "SDL/SDL.h"
 #include <cmath> // for calculating direction radians from coordinates
@@ -81,13 +82,22 @@ void Sheep::updatePos(int screenWidth, int screenHeight, vector<vector<int> > lo
 
 void Sheep::updateDir(vector<vector<int> > locations) {
 	//Check if desiredDirection needs to be updated because of other sheep's close proximity
+	int closestSheep = -1; //index of the closest sheep. stays -1 if no sheep is within 100 pixels
+	int minDistance = INT_MAX; // holds the smallest distance found between this sheep and another up to this point
+	double currentDistance;  //holds the distance to the sheep currently being looked at
 	for(int i=0; i < locations.size(); i++) {
 		if(xPos == locations[i][0] && yPos == locations[i][1]) continue; //Skip, as this is the same sheep as is being looked at in locations
-		if( sqrt(pow(xPos-locations[i][0],2) + pow(yPos-locations[i][1],2)) < 100) {
-			//This sheep is within 100 pixels
-			//Make desired direction away from this nearby sheep
-			desiredDirection =  atan2((yPos - locations[i][1]), (xPos - locations[i][0]));
+		currentDistance = sqrt(pow(xPos-locations[i][0],2) + pow(yPos-locations[i][1],2));
+		if(currentDistance < 100) { //if the distance between this sheep and another sheep is less than 100 pixels
+			if(currentDistance < minDistance) {
+				minDistance = currentDistance;
+				closestSheep = i;
+			}
 		}
+	}
+	if(closestSheep != -1) {
+		//Make desired direction away from this nearby sheep
+		desiredDirection =  atan2((yPos - locations[closestSheep][1]), (xPos - locations[closestSheep][0]));
 	}
 
 	//make sure desired Direction is between 0 and 2pi

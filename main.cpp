@@ -19,9 +19,13 @@ int main(int argc, char* args[]) {
 	bool cap = true; //determines if the frame rate should be used
 	int startTime = 0;
 
+	//Adjust window size using command line arguments
 	if (argc == 3) { //if two arguments given
 		width = atoi(args[1]);
 		height = atoi(args[2]);
+	} else if (argc != 1 && argc != 3) {
+		cout << "No additional arguments or two are required. I could not understand this request. Please check our ReadMe for more a more detailed explaination" << endl;
+		return 1;
 	}
 
 	SheepGraphics system(width,height,32); //Creates a 1280 by 960 window with 32 bits per pixel
