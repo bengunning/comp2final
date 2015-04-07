@@ -45,7 +45,7 @@ int main(int argc, char* args[]) {
 	//Draw surfaces to screen
 	system.fill_with_background(background,300,225);	
 	system.displayAll(&herd);
-	system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());
 	SDL_Flip(system.getScreen());
 
@@ -67,7 +67,7 @@ int main(int argc, char* args[]) {
 					system.fill_with_background(background,300,225);	
 					system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());
 					system.displayAll(&herd);
-					system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+					if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 					SDL_Flip(system.getScreen());
 					break;
 				case SDL_MOUSEBUTTONDOWN:		
@@ -88,7 +88,7 @@ int main(int argc, char* args[]) {
 		system.fill_with_background(background,300,225);
 		system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());
 		system.displayAll(&herd);
-		system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
+		if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-FONT_SIZE*(CAPTION.length()/3.5),system.getHeight()-FONT_SIZE-10,title,system.getScreen());
 		SDL_Flip(system.getScreen());
 		//SDL_Delay(30);
 		frame++;
