@@ -10,17 +10,21 @@ Sheep::Sheep(int xPos, int yPos, double speed, double direction):
 	xPos(xPos), 
 	yPos(yPos), 
 	speed(speed), 
-	direction(direction)
+	direction(direction) 
 	{
-		while(direction < 0) direction += 2 * M_PI;
-		while(direction > 2 * M_PI) direction -= 2 * M_PI;
+		makeAngleValid(&direction);
 		desiredDirection = direction;
 	}
 
+void Sheep::makeAngleValid(double * theta) {
+	while(*theta < 0) *theta += 2 * M_PI;
+	while(*theta > 2 * M_PI) *theta -= 2 * M_PI;
+}
+
+// This definition of equality makes the assumption that different sheep cannot share the exact same horizontal and vertical coordinates
 int Sheep::operator==(const Sheep& another) {
 	return (xPos == another.xPos && yPos == another.yPos); 
 }
-// This definition of equality makes the assumption that different sheep cannot share the exact same horizontal and vertical coordinates
 
 int Sheep::getX() {
 	return xPos;
@@ -38,15 +42,13 @@ double Sheep::getSpeed() {
 	return speed;
 }
 
+// handle a mouse click
 void Sheep::handleEvents(SDL_Event* e) {
 
 	if (e->type == SDL_MOUSEBUTTONDOWN) { // user has clicked
 		int xMouse, yMouse;
 		SDL_GetMouseState(&xMouse, &yMouse); // set x y mouse positions
-		//direction = atan2((yPos - yMouse), (xPos - xMouse)); // capture direction based on diference in coordinates
 		face(xMouse,yMouse);
-		//desiredDirection =  M_PI + atan2((yPos - yMouse), (xPos - xMouse)); // capture direction based on diference in coordinates
-		// atan2 takes account of signs and returns proper radians among 2pi
 		speed = 10 + 55/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
 		//closer the click, the more the speed increases, 50 minimum change
 	}
@@ -58,12 +60,10 @@ void Sheep::face(int x, int y) {
 }
 
 void Sheep::updatePos(int screenWidth, int screenHeight, vector<vector<int> > locations) {
-	//Update the speed randomly
-	//int acceleration = rand() % 3 - 2; //random number between -2 and 0
-	//speed += acceleration / 2.0;
+	// Make sure speed is not negative 
 	if(speed < 0) speed = 0;
 
-	//Update the direction randomly but only if the sheep is moving
+	//Update the direction but only if the sheep is moving
 	if(speed>0) {
 		updateDir(locations);
 	}
@@ -91,8 +91,7 @@ void Sheep::updateDir(vector<vector<int> > locations) {
 	}
 
 	//make sure desired Direction is between 0 and 2pi
-	while(desiredDirection < 0) desiredDirection += 2 * M_PI;
-	while(desiredDirection > 2 * M_PI) desiredDirection -= 2 * M_PI;
+	makeAngleValid(&desiredDirection);
 
 	//Determine if turning is necessary
 	double difference = desiredDirection - direction;
@@ -102,11 +101,11 @@ void Sheep::updateDir(vector<vector<int> > locations) {
 	} else if((difference < 0 && difference > -1 * M_PI) || difference > M_PI) {
 		//turn left
 		direction -= M_PI / 8.0;
-		if(direction < 0) direction += M_PI * 2;
+		makeAngleValid(&direction);
 	} else{
 		//turn right
 		direction += M_PI / 8.0;
-		if(direction > M_PI * 2) direction -= M_PI * 2;
+		makeAngleValid(&direction);
 	}	
 }
 

@@ -22,9 +22,13 @@ public:
 	void handleEvents(SDL_Event*); // handle mouse clicks, updating velocity
 	void updatePos(int,int, vector<vector<int> >); // update next position based on speed and direction.
 	void updateDir(vector<vector<int> >); //turns towards a desired direction in radians
-	void updateSpeed(double s); // tend towards the new velocity,
+	void updateSpeed(double); // tend towards the new velocity,
 	void face(int,int); //turns towards a given point
 private:
+	//helper functions
+	void makeAngleValid(double*); //makes sure a radian value falls between 0 and 2*pi. It adds or subtracts 2*pi if necessary to fit into the range
+
+	//private variables
 	int xPos, yPos; // A sheeps position within a window.
 	double speed; // holds the speed of a sheep. Must be a positive value, 0 if not in motion
 	double direction; // A cartesian direction in radians. 0 is to the right of the screen, pi/2 is the top of the screen, etc.

@@ -17,7 +17,7 @@ Herd::Herd()
 	numSheep = 0;
 	vector<vector<int> > locations;
 	vector<double> directions;
-	xCenter = yCenter = 300;
+	setCenter(300,300);
 }
 
 Herd::Herd(string fileName) {
@@ -25,8 +25,9 @@ Herd::Herd(string fileName) {
 	numSheep = 0;
 	vector<vector<int> > locations;
 	vector<double> directions;
-        xCenter = yCenter = 300;
+	setCenter(300,300);
 
+	//Read in sheep information from a file
 	int xPos, yPos; //temp variables 
 	double speed, direction; //temp variables
 	ifstream file(fileName.c_str());
@@ -37,11 +38,16 @@ Herd::Herd(string fileName) {
 	file.close();
 }
 
+void Herd::setCenter(int x, int y) {
+	xCenter = x;
+	yCenter = y;
+}
+
 // Add a sheep to the end of the group list
 void Herd::bear( Sheep& sheep )
 {
    group.push_back(sheep);
-   numSheep ++;
+   numSheep++;
    // store the location of sheep into vector locations   
    vector<int> temp; // temp vector to store location of sheep
    temp.push_back(sheep.getX());
@@ -58,7 +64,7 @@ void Herd::shear( Sheep& sheep ) {
    list<Sheep>::iterator it = find( group.begin() , group.end() , sheep );
    if (it != group.end()) {
       group.erase(it);
-      numSheep --;
+      numSheep--;
       // remove the location of sheep from vector locations	 
       for(int i = 0; i < numSheep; i ++)
 	 if(locations[i][0] == sheep.getX() && locations[i][1] == sheep.getY()) {
@@ -68,16 +74,16 @@ void Herd::shear( Sheep& sheep ) {
    }
 }
 
+// finds the average speed of herd
 double Herd::speed() {
 	list<Sheep>::iterator it;
 	double sum = 0;
-	int count = 0;
 	for (it = group.begin(); it != group.end(); it++) {
 		sum += it->getSpeed();
-		count++;
 	}
-	return sum/count;
+	return sum / group.size();
 }
+
 // Return locations of all sheep in the group list
 vector<vector<int> > Herd::getAllLocations()
 {
@@ -85,7 +91,7 @@ vector<vector<int> > Herd::getAllLocations()
 }
 
 vector<double> Herd::getAllDirections() {
-	return directions;
+   return directions;
 }
 
 // Call updatePos() function for all sheep in the group list
@@ -104,12 +110,15 @@ void Herd::updateAll(int screenWidth, int screenHeight)
       
 }
 
+// Handles a mouse click
 void Herd::handleAllEvents(SDL_Event* e) {
-   SDL_GetMouseState(&xCenter,&yCenter);
+   SDL_GetMouseState(&xCenter,&yCenter); //make the click's spot the new center
+   // Have each sheep handle the mouse click
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
       it->handleEvents(e);
 }
 
+// Make all sheep face a certain point
 void Herd::faceAll(int x, int y) {
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
       it->face(x,y);
