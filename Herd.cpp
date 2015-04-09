@@ -24,9 +24,20 @@ Herd::Herd(string fileName) {
 	int xPos, yPos; //temp variables 
 	double speed, direction; //temp variables
 	ifstream file(fileName.c_str());
-	while (file >> xPos >> yPos >> speed >> direction) {
-		Sheep temp(xPos,yPos,speed,direction);
-		bear(temp);
+	bool endOfFileReached = false;
+	while(!endOfFileReached) {
+		if (file >> xPos >> yPos >> speed >> direction) {
+			Sheep temp(xPos,yPos,speed,direction);
+			bear(temp);
+		} else if (file.eof()) {
+			endOfFileReached = true;
+		} else {
+			// the file just read a line that could not be properly parsed
+			// We will assume all such lines are comments and not create
+			// any sheep for them.
+			file.clear(); // ignore the error
+			file.ignore(10000, '\n'); //skip to the next line
+		}
 	}
 	file.close();
 }
