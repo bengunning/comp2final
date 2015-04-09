@@ -31,6 +31,8 @@ public:
 	void setCenter(int,int);         //adjusts the center of the herd to a new point
 	void updateCenter(int,int);             //updates the center location
 private:
+	void init();		    // common code between constructors
+
 	list<Sheep> group;	       // list of sheep
 	int numSheep;		       // number of sheep in the list
 	vector<vector<int> > locations;  // an n*2(xPos in 1st col and yPos in 2nd col) 2-D vector storing locations of all the sheep in the group list

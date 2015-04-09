@@ -14,24 +14,12 @@ using namespace std;
 // Constructor 
 Herd::Herd()
 {
-	list<Sheep> group;
-	numSheep = 0;
-	vector<vector<int> > locations;
-	vector<double> directions;
-	setCenter(300,300);
-	centerSpeed = 5;
-	centerDirection = 0;
+	init();
 }
 
 Herd::Herd(string fileName) {
-	list<Sheep> group;
-	numSheep = 0;
-	vector<vector<int> > locations;
-	vector<double> directions;
-	setCenter(300,300);
-	centerSpeed = 5;
-	centerDirection = 0;
-
+	init();
+	
 	//Read in sheep information from a file
 	int xPos, yPos; //temp variables 
 	double speed, direction; //temp variables
@@ -41,6 +29,16 @@ Herd::Herd(string fileName) {
 		bear(temp);
 	}
 	file.close();
+}
+
+void Herd::init() {
+	list<Sheep> group;
+	numSheep = 0;
+	vector<vector<int> > locations;
+	vector<double> directions;
+	setCenter(300,300);
+	centerSpeed = 5;
+	centerDirection = 0;
 }
 
 void Herd::setCenter(int x, int y) {
