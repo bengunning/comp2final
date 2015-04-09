@@ -55,6 +55,7 @@ int main(int argc, char* args[]) {
 
 	while(!quit) {
 		//Update desired directions to center of herd every 6 frames
+		herd.updateCenter(system.getWidth(),system.getHeight());
 		if(frame % 6) {
 			herd.faceAll(herd.getXCenter(),herd.getYCenter());
 		}

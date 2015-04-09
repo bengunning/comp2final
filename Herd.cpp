@@ -7,6 +7,7 @@
 #include "Sheep.h"
 #include <fstream>
 #include <string>
+#include <cmath>
 #include "SDL/SDL.h"
 using namespace std;
 
@@ -18,6 +19,8 @@ Herd::Herd()
 	vector<vector<int> > locations;
 	vector<double> directions;
 	setCenter(300,300);
+	centerSpeed = 5;
+	centerDirection = 0;
 }
 
 Herd::Herd(string fileName) {
@@ -26,6 +29,8 @@ Herd::Herd(string fileName) {
 	vector<vector<int> > locations;
 	vector<double> directions;
 	setCenter(300,300);
+	centerSpeed = 5;
+	centerDirection = 0;
 
 	//Read in sheep information from a file
 	int xPos, yPos; //temp variables 
@@ -41,6 +46,15 @@ Herd::Herd(string fileName) {
 void Herd::setCenter(int x, int y) {
 	xCenter = x;
 	yCenter = y;
+}
+
+void Herd::updateCenter(int width, int height) {
+	xCenter += centerSpeed * cos(centerDirection);
+	yCenter += centerSpeed * sin(centerDirection);
+	if(xCenter < 0) xCenter = 0;
+	if(xCenter > width) xCenter = width;
+	if(yCenter < 0) yCenter = 0;
+	if(yCenter > height) yCenter = height;
 }
 
 // Add a sheep to the end of the group list
