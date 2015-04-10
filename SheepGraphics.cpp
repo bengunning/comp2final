@@ -20,6 +20,7 @@ void SheepGraphics::displayAll(Herd * herd) {
 	vector<double> dirs;
 	int count;        // These two are used to determine
 	double direction; // which picture to use
+	int dimension = 450; // width and height of the sheep
 	locs = herd->getAllLocations();
 	dirs = herd->getAllDirections();
 	for(int i=0; i < locs.size(); i++) {
@@ -35,7 +36,8 @@ void SheepGraphics::displayAll(Herd * herd) {
 
 		if(count >= sheepPics.size()) count = 0; //Fix possible error when angle very close to 360
 
-		Graphics::apply_surface(locs[i][0]-25,locs[i][1]-27,sheepPics[count],Graphics::getScreen());
+		Graphics::apply_surface(locs[i][0]-dimension/2,locs[i][1]-dimension/2,sheepPics[count],Graphics::getScreen());
+		// ofset the sheep pictures by half the height and half the width
 		
 	}
 }
