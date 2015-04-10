@@ -20,7 +20,7 @@ void SheepGraphics::displayAll(Herd * herd) {
 	vector<double> dirs;
 	int count;        // These two are used to determine
 	double direction; // which picture to use
-	int dimension = 450; // width and height of the sheep
+	int dimension = 100; // width and height of the sheep
 	locs = herd->getAllLocations();
 	dirs = herd->getAllDirections();
 	for(int i=0; i < locs.size(); i++) {
