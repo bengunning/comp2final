@@ -1,9 +1,15 @@
+# Each line in this file represents a sheep
+# to be added into a herd. The first column
+# is the x position, the second is the y position,
+# the third is the speed, and the last is the direction
+# in radians. Blank lines and lines starting with # are ignored
+
 180 140 0 0
 400 400 0 0
-#600 50 0 0
-#50 800 0 0
-#640 480 0 0 
+600 50 0 0
+50 800 0 0
+640 480 0 0 
 200 650 0 0
-#700 400 0 0
-#770 50 0 0
+700 400 0 0
+770 50 0 0
 558 256 0 0
