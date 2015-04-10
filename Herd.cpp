@@ -8,13 +8,20 @@
 #include <fstream>
 #include <string>
 #include <cmath>
+#include <ctime>
+#include <cstdlib>
 #include "SDL/SDL.h"
 using namespace std;
 
 // Constructor 
-Herd::Herd()
-{
+Herd::Herd(int x, int w, int h)
+{ // w and h are defaulted to 0, so all sheep spawn in the corner without arguments
+	srand(time(NULL));
 	init();
+	for (int i = 0; i < x; i++) { //count number of 
+		Sheep temp(rand()%w, rand()%h, 0, 0); // speed defaults at 0
+		bear(temp);
+	}
 }
 
 Herd::Herd(string fileName) {

@@ -15,7 +15,7 @@ SheepHerder::SheepHerder() :
 	background(NULL),
 	centerX(NULL),
 	title(NULL),
-	herd("Herd.txt"),
+	//herd("Herd.txt"),// moved to init()
 	system(width,height,32) 
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white
@@ -29,6 +29,8 @@ void SheepHerder::init() {
 	 background = system.load_image("images/plaid.png");
 	 centerX = system.load_image("images/centerX.png");
 	 title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
+	 Herd temp(65, system.getWidth(), system.getHeight()); // initialize random herd
+	 herd = temp;
 }
 
 void SheepHerder::drawAllSurfaces() {
