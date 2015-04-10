@@ -84,7 +84,7 @@ SDL_Surface *Graphics::load_image(string filename) {
                 optimizedImage = SDL_DisplayFormat(loadedImage);
                 SDL_FreeSurface(loadedImage);
 		//Color Keying
-		Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0x9B, 0x6B, 0x9B );
+		Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0x9C, 0x69, 0x9C );
 		// changed this to a less common color
 		SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey );
         } else {
