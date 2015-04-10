@@ -1,0 +1,46 @@
+A summary of our eventual goals and how we can get there:
+
+#######################################################################################
+# First Goal ### Make multiple herds at a time with sheep that can move between herds #
+#######################################################################################
+
+Steps: 
+	1) Create a class that holds a list of Herds.
+	2) Make sure Sheep are sent the centers of every herd on the screen when they move
+	3) If a sheep becomes closer to the center of another herd, remove the sheep from it's current herd and add it to the other herd.
+	4) If two herd centers become close enough that their sheep start running into each other, add all sheep from one herd to the other herd.
+
+##########################################
+# Second Goal ### Improve Sheep movement #
+##########################################
+
+Steps:
+	1) Make sheep avoid running into side of screen if possible.
+	2) Create a better way of moving sheep than by clicking at a new center point for the herd. This will become especially important when multiple Herds exist.
+	3) Currently, sheep will try to turn completely away from its closest neighbor. Change this so it only turns as much as it needs to to avoid other sheep.
+
+########################################################################
+# Third Goal ### Make something happen if two sheep ever get too close #
+########################################################################
+
+Steps:
+	1) Possibly kill one sheep?
+	2) Possibly mate them?
+
+#################################
+# Fourth Goal ### Add more clay #
+#################################
+
+Steps:
+	1) Add the clay background
+	2) Add fences
+	3) Add walls
+
+#####################################
+# Fifth Goal ### Create a pen class #
+#####################################
+
+Steps:
+	1) Create a subclas of Herd called pen.
+	2) A penned herd is one where the sheep cannot exit a given area that is penned in
+	3) Update the draw functions to draw a fence around the area a pen exists.
