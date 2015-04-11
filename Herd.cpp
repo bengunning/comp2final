@@ -14,14 +14,21 @@
 using namespace std;
 
 // Constructor 
+Herd::Herd() {
+	init();
+}
+//randomized constructor
 Herd::Herd(int x, int w, int h)
-{ // w and h are defaulted to 0, so all sheep spawn in the corner without arguments
+{
 	srand(time(NULL));
 	init();
+	if (w > 0 && h > 0) {
 	for (int i = 0; i < x; i++) { //count number of 
-		Sheep temp(rand()%w, rand()%h, 0, 0); // speed defaults at 0
+		Sheep temp(rand()%(w - w/4) + w/8, (rand()%(h - h/4)) + h/8, 0, 0);//*(8/9) + w*(17/18)), rand()%(h*(8/9) + h*(17/18)), 0, 0); // speed defaults at 0
+		// sheep only fill in 8/9 of the screen
 		bear(temp);
 	}
+	} 
 }
 
 Herd::Herd(string fileName) {
