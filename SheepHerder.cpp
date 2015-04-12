@@ -26,7 +26,7 @@ void SheepHerder::init() {
 	system.loadPics(); //loads the rotated pictures of sheep into a vector of SDL_Surfacesi
 
 	 //initialize surfaces
-	 background = system.load_image("images/plaid.png");
+	 background = system.load_image("images/GrayEdits/IMG_0458.png");
 	 centerX = system.load_image("images/centerX.png");
 	 title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
 	 Herd temp(65, system.getWidth(), system.getHeight()); // initialize random herd
@@ -34,7 +34,7 @@ void SheepHerder::init() {
 }
 
 void SheepHerder::drawAllSurfaces() {
-	system.fill_with_background(background,300,225); //display the background
+	system.fill_with_background(background,2000,1200); //display the background
 	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-fontSize*(caption.length()/3.5),system.getHeight()-fontSize-10,title,system.getScreen()); //display text in corner
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());  // display the x
 	system.displayAll(&herd); //display the sheep
