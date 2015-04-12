@@ -13,12 +13,12 @@ using namespace std;
 
 class SheepHerder {
 public:
-	SheepHerder(); // default constructor
+	SheepHerder(int=0,int=1280,int=900); // constructor
 	~SheepHerder(); // destructor
 	void playGame();
 private:
 	//helper functions
-	void init(); // initializes the graphics and herd(s)
+	void init(int); // initializes the graphics and herd(s)
 	void drawAllSurfaces(); // draws all surcaces to screen
 
 	//private data members

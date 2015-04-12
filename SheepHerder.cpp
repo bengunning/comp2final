@@ -2,9 +2,9 @@
 #include "Herd.h"
 #include "SheepGraphics.h"
 
-SheepHerder::SheepHerder() :
-	width(1280),
-	height(900),
+SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
+	width(width),
+	height(height),
 	fontSize(120),
 	caption("Sheep Herder"),
 	framerate(60),
@@ -19,18 +19,25 @@ SheepHerder::SheepHerder() :
 	system(width,height,32) 
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white
-	init();
+	init(numberOfSheep);
 }
 
-void SheepHerder::init() {
+void SheepHerder::init(int numberOfSheep) {
 	system.loadPics(); //loads the rotated pictures of sheep into a vector of SDL_Surfacesi
 
 	 //initialize surfaces
 	 background = system.load_image("images/GrayEdits/IMG_0458.png");
 	 centerX = system.load_image("images/centerX.png");
 	 title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
-	 Herd temp(65, system.getWidth(), system.getHeight()); // initialize random herd
-	 herd = temp;
+	 
+	//initialize the herd
+	if(numberOfSheep) {
+		Herd temp(numberOfSheep, system.getWidth(), system.getHeight()); // initialize random herd
+		herd = temp;
+	} else {
+		Herd temp("Herd.txt");
+		herd = temp;
+	}
 }
 
 void SheepHerder::drawAllSurfaces() {

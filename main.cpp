@@ -1,18 +1,36 @@
 // Driver program for sheepHerder
 
 #include "SheepHerder.h"
+#include <cstdlib> //for atoi
+using namespace std;
 
 int main(int argc, char* args[]) {
-	//Adjust window size using command line arguments
-	/*if (argc == 3) { //if two arguments given
-		width = atoi(args[1]);
-		height = atoi(args[2]);
-	} else if (argc != 1 && argc != 3) {
-		cout << "No additional arguments or two are required. I could not understand this request. Please check our ReadMe for more a more detailed explaination" << endl;
-		return 1;
-	}*/
+	// Arguments control the number of sheep spawned and the 
+	// One additional argument will be the number of sheep desired
+	// Two additional arguments will be the width and height of the window desired
+	// Three arguments will be the number of sheep wanted followed
+	// by the width and height
+	int width = 1280, height = 900; //default width and height of window
+	int numberOfSheep = 0; //default number of sheep. Leaving this as 0 will read in sheep from Herd.txt by default
+	int numberOfArgs = argc - 1;
+	switch(numberOfArgs) {
+		case 1:
+			numberOfSheep = atoi(args[1]);
+			break;
+		case 2:
+			width = atoi(args[1]);
+			height = atoi(args[2]);
+			break;
+		case 3:
+			numberOfSheep = atoi(args[1]);
+			width = atoi(args[2]);
+			height = atoi(args[3]);
+			break;
+		default:
+			break;
+	}
 
-	SheepHerder shepherd;
+	SheepHerder shepherd(numberOfSheep,width,height);
 	shepherd.playGame();
 	
         return 0; 
