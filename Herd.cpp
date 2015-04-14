@@ -62,7 +62,7 @@ void Herd::init() {
 	vector<vector<int> > locations;
 	vector<double> directions;
 	setCenter(300,300);
-	centerSpeed = 5;
+	centerSpeed = 0;
 	centerDirection = 0;
 }
 
