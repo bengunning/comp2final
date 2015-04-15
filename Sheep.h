@@ -20,7 +20,7 @@ public:
 	double getDirection();
 	double getSpeed(); // needed to calculate average speeds
 	void handleEvents(SDL_Event*); // handle mouse clicks, updating velocity
-	void updatePos(int,int, vector<vector<int> >); // update next position based on speed and direction.
+	void updatePos(int,int,vector<vector<int> >,vector<vector<int> >); // update next position based on speed and direction.
 	void updateDir(vector<vector<int> >,vector<vector<int> >); //turns towards a desired direction in radians
 	void updateSpeed(double); // tend towards the new velocity,
 	void face(int,int); //turns towards a given point

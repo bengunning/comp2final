@@ -1,7 +1,6 @@
 // implementation of class SheepGraphics
 
 #include "SheepGraphics.h"
-#include <iostream> //for debugging
 #include <vector>
 #include <iterator>
 #include <cmath>

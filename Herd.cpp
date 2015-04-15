@@ -132,11 +132,11 @@ vector<double> Herd::getAllDirections() {
 }
 
 // Call updatePos() function for all sheep in the group list
-void Herd::updateAll(int screenWidth, int screenHeight)
+void Herd::updateAll(int screenWidth, int screenHeight, vector<vector<int> > obstacles)
 {
    int i = 0;
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++) {
-      it->updatePos(screenWidth, screenHeight, locations);
+      it->updatePos(screenWidth, screenHeight, locations, obstacles);
       it->updateSpeed(speed());
       locations[i][0] = it->getX();
       locations[i][1] = it->getY();

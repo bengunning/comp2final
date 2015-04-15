@@ -14,6 +14,7 @@ public:
 	Obstacle(int,int,int,int,int); //Constructor
 	int getX();
 	int getY();
+	int getBuffer();
 	virtual SDL_Surface* getSurface() const = 0; //pure virtual function
 protected:
 	int x,y; //The coordinates of the obstacle

@@ -13,3 +13,7 @@ int Obstacle::getX() {
 int Obstacle::getY() {
 	return y;
 }
+
+int Obstacle::getBuffer() {
+	return buffer;
+}

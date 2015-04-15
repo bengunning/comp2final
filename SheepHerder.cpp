@@ -16,7 +16,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	centerX(NULL),
 	title(NULL),
 	stoneSurface(NULL),
-	stone(400,400,80,width,height),
+	stone(400,400,180,width,height),
 	system(width,height,32) 
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white
@@ -52,6 +52,14 @@ void SheepHerder::drawAllSurfaces() {
 }
 
 void SheepHerder::playGame() {
+	// Create the obstacle location vector for the sheep to avoid
+	vector<vector<int> > obstacles;
+	vector<int> temp;
+	temp.push_back(stone.getX());
+	temp.push_back(stone.getY());
+	temp.push_back(stone.getBuffer());
+	obstacles.push_back(temp);
+
 	while(!quit) {
 		startTime = SDL_GetTicks();
 
@@ -81,7 +89,7 @@ void SheepHerder::playGame() {
 					break;
 			}
 		}
-		herd.updateAll(system.getWidth(),system.getHeight());
+		herd.updateAll(system.getWidth(),system.getHeight(), obstacles);
 		drawAllSurfaces();
 		
 		//framerate control

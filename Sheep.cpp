@@ -60,18 +60,9 @@ void Sheep::face(int x, int y) {
 	desiredDirection =  M_PI + atan2((yPos - y), (xPos - x));
 }
 
-void Sheep::updatePos(int screenWidth, int screenHeight, vector<vector<int> > locations) {
+void Sheep::updatePos(int screenWidth, int screenHeight, vector<vector<int> > locations, vector<vector<int> > obstacles) {
 	// Make sure speed is not negative 
 	if(speed < 0) speed = 0;
-
-	//Create a sample object to avoid. In this case, avoid the point (400,400) with a radius of 180 pixels
-	// create a vector with values 400 400 180
-	vector<vector<int> > obstacles;
-	vector<int> temp;
-	temp.push_back(400);
-	temp.push_back(400);
-	temp.push_back(180);
-	obstacles.push_back(temp);
 
 	//Update the direction but only if the sheep is moving
 	if(speed>0) {
