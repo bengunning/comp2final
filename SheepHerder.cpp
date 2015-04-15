@@ -7,7 +7,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	height(height),
 	fontSize(120),
 	caption("Sheep Herder"),
-	framerate(1),
+	framerate(20),
 	frame(0),
 	startTime(0),
 	cap(true),
