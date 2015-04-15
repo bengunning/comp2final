@@ -16,7 +16,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	centerX(NULL),
 	title(NULL),
 	stoneSurface(NULL),
-	stone(400,400,80),
+	stone(400,400,80,width,height),
 	system(width,height,32) 
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white

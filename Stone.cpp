@@ -2,8 +2,8 @@
 #include <string>
 #include "Graphics.h"
 
-Stone::Stone(int x, int y, int buffer) :
-	Obstacle::Obstacle(x,y,buffer),
+Stone::Stone(int x, int y, int buffer, int screenWidth, int screenHeight) :
+	Obstacle::Obstacle(x,y,buffer,screenWidth,screenHeight),
 	image(NULL)
 {
 	image = graphics.load_image("images/Stone.png");
