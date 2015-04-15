@@ -64,9 +64,18 @@ void Sheep::updatePos(int screenWidth, int screenHeight, vector<vector<int> > lo
 	// Make sure speed is not negative 
 	if(speed < 0) speed = 0;
 
+	//Create a sample object to avoid. In this case, avoid the point (400,400) with a radius of 180 pixels
+	// create a vector with values 400 400 180
+	vector<vector<int> > obstacles;
+	vector<int> temp;
+	temp.push_back(400);
+	temp.push_back(400);
+	temp.push_back(180);
+	obstacles.push_back(temp);
+
 	//Update the direction but only if the sheep is moving
 	if(speed>0) {
-		updateDir(locations);
+		updateDir(locations,obstacles);
 	}
 
 	//Update position
@@ -80,7 +89,7 @@ void Sheep::updatePos(int screenWidth, int screenHeight, vector<vector<int> > lo
 	if(yPos > screenHeight) yPos = screenHeight;
 }
 
-void Sheep::updateDir(vector<vector<int> > locations) {
+void Sheep::updateDir(vector<vector<int> > locations, vector<vector<int> > obstacles) {
 	//Check if desiredDirection needs to be updated because of other sheep's close proximity
 	int closestSheep = -1; //index of the closest sheep. stays -1 if no sheep is within 60 pixels
 	int minDistance = INT_MAX; // holds the smallest distance found between this sheep and another up to this point
@@ -98,6 +107,16 @@ void Sheep::updateDir(vector<vector<int> > locations) {
 	if(closestSheep != -1) {
 		//Make desired direction away from this nearby sheep
 		desiredDirection =  atan2((yPos - locations[closestSheep][1]), (xPos - locations[closestSheep][0]));
+	}
+
+	//Check if within the radius of any obstacles
+	double distance;
+	for(int i = 0; i < obstacles.size(); i++) {
+		distance = sqrt(pow(xPos-obstacles[i][0],2) + pow(yPos-obstacles[i][1],2));
+		if(distance < obstacles[i][2]) {
+			//Within the stated distance of an obstacle, turn away from it
+			desiredDirection = atan2(yPos - obstacles[i][1], xPos - locations[i][0]);
+		}
 	}
 
 	//make sure desired Direction is between 0 and 2pi
