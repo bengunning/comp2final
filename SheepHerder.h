@@ -40,7 +40,6 @@ private:
 	
 	//A stone obstacle
 	Stone stone;
-	SDL_Surface* stoneSurface;      // a picture of a stone
 
 	Herd herd; // the herd of sheep
 	SheepGraphics system; // the main graphics layer

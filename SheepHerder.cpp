@@ -7,7 +7,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	height(height),
 	fontSize(120),
 	caption("Sheep Herder"),
-	framerate(60),
+	framerate(1),
 	frame(0),
 	startTime(0),
 	cap(true),
@@ -15,7 +15,6 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	background(NULL),
 	centerX(NULL),
 	title(NULL),
-	stoneSurface(NULL),
 	stone(400,400,180,width,height),
 	system(width,height,32) 
 	{
@@ -30,7 +29,6 @@ void SheepHerder::init(int numberOfSheep) {
 	 background = system.load_image("images/plaid.png");
 	 centerX = system.load_image("images/centerX.png");
 	 title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
-	 stoneSurface = stone.getSurface(); 
 	 
 	//initialize the herd
 	if(numberOfSheep) {
@@ -44,7 +42,7 @@ void SheepHerder::init(int numberOfSheep) {
 
 void SheepHerder::drawAllSurfaces() {
 	system.fill_with_background(background,300,225); //display the background
-	system.apply_surface(stone.getX()-45,stone.getY()-22,stoneSurface,system.getScreen());
+	system.apply_surface(stone.getX()-45,stone.getY()-22,stone.getSurface(),system.getScreen());
 	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-fontSize*(caption.length()/3.5),system.getHeight()-fontSize-10,title,system.getScreen()); //display text in corner
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());  // display the x
 	system.displayAll(&herd); //display the sheep
