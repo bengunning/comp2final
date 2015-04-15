@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -lSDL -O3 -Ofast -lSDL_image -lSDL_ttf
 PROGRAM = sheepHerder
-OBJECTS = main.o Sheep.o SheepHerder.o SheepGraphics.o Graphics.o Herd.o
+OBJECTS = main.o Obstacle.o Stone.o Sheep.o SheepHerder.o SheepGraphics.o Graphics.o Herd.o
 
 $(PROGRAM) : $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(PROGRAM) $(CFLAGS)

@@ -15,7 +15,8 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	background(NULL),
 	centerX(NULL),
 	title(NULL),
-	//herd("Herd.txt"),// moved to init()
+	stoneSurface(NULL),
+	stone(400,400,80),
 	system(width,height,32) 
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white
@@ -29,6 +30,7 @@ void SheepHerder::init(int numberOfSheep) {
 	 background = system.load_image("images/plaid.png");
 	 centerX = system.load_image("images/centerX.png");
 	 title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
+	 stoneSurface = stone.getSurface(); 
 	 
 	//initialize the herd
 	if(numberOfSheep) {
@@ -42,6 +44,7 @@ void SheepHerder::init(int numberOfSheep) {
 
 void SheepHerder::drawAllSurfaces() {
 	system.fill_with_background(background,300,225); //display the background
+	system.apply_surface(stone.getX(),stone.getY(),stoneSurface,system.getScreen());
 	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-fontSize*(caption.length()/3.5),system.getHeight()-fontSize-10,title,system.getScreen()); //display text in corner
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());  // display the x
 	system.displayAll(&herd); //display the sheep
