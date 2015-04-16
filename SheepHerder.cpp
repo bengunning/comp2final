@@ -7,7 +7,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	height(height),
 	fontSize(120),
 	caption("Sheep Herder"),
-	framerate(60),
+	framerate(20),
 	frame(0),
 	startTime(0),
 	cap(true),
@@ -15,7 +15,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	background(NULL),
 	centerX(NULL),
 	title(NULL),
-	//herd("Herd.txt"),// moved to init()
+	stone(400,400,180,width,height),
 	system(width,height,32) 
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white
@@ -42,6 +42,7 @@ void SheepHerder::init(int numberOfSheep) {
 
 void SheepHerder::drawAllSurfaces() {
 	system.fill_with_background(background,2000,1200); //display the background
+	system.apply_surface(stone.getX()-45,stone.getY()-22,stone.getSurface(),system.getScreen());
 	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-fontSize*(caption.length()/3.5),system.getHeight()-fontSize-10,title,system.getScreen()); //display text in corner
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());  // display the x
 	system.displayAll(&herd); //display the sheep
@@ -49,6 +50,14 @@ void SheepHerder::drawAllSurfaces() {
 }
 
 void SheepHerder::playGame() {
+	// Create the obstacle location vector for the sheep to avoid
+	vector<vector<int> > obstacles;
+	vector<int> temp;
+	temp.push_back(stone.getX());
+	temp.push_back(stone.getY());
+	temp.push_back(stone.getBuffer());
+	obstacles.push_back(temp);
+
 	while(!quit) {
 		startTime = SDL_GetTicks();
 
@@ -78,7 +87,7 @@ void SheepHerder::playGame() {
 					break;
 			}
 		}
-		herd.updateAll(system.getWidth(),system.getHeight());
+		herd.updateAll(system.getWidth(),system.getHeight(), obstacles);
 		drawAllSurfaces();
 		
 		//framerate control

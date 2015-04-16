@@ -9,6 +9,7 @@
 #include "SDL/SDL.h"
 #include "Herd.h"
 #include "SheepGraphics.h"
+#include "Stone.h"
 using namespace std;
 
 class SheepHerder {
@@ -35,7 +36,10 @@ private:
 
 	SDL_Surface* background; // the background image
 	SDL_Surface* centerX;    // the X to go in the center of the herd
-	SDL_Surface* title;	 // the caption layeri
+	SDL_Surface* title;	 // the caption layer
+	
+	//A stone obstacle
+	Stone stone;
 
 	Herd herd; // the herd of sheep
 	SheepGraphics system; // the main graphics layer
