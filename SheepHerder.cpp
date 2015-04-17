@@ -15,7 +15,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	background(NULL),
 	centerX(NULL),
 	title(NULL),
-	stone(400,400,180,width,height),
+	stone(400,400,250,180,width,height), // added a radius to the stone
 	system(width,height,32) 
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white
