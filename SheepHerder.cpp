@@ -67,7 +67,7 @@ void SheepHerder::playGame() {
 
 		herd.updateCenter(system.getWidth(),system.getHeight());
 		if(frame % 6) {
-			herd.faceAll(herd.getXCenter(),herd.getYCenter());
+			herd.faceAll(herd.getXCenter(),herd.getYCenter(), herd.getClickType());
 		}
 
 		while(SDL_PollEvent(&e)!=0) {

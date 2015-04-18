@@ -57,13 +57,11 @@ Herd::Herd(string fileName) {
 }
 
 void Herd::init() {
-	list<Sheep> group;
 	numSheep = 0;
-	vector<vector<int> > locations;
-	vector<double> directions;
 	setCenter(300,300);
 	centerSpeed = 0;
 	centerDirection = 0;
+	clickType = 2;	// default click type, sheep moves toward the click
 }
 
 void Herd::setCenter(int x, int y) {
@@ -156,9 +154,10 @@ void Herd::handleAllEvents(SDL_Event* e) {
 }
 
 // Make all sheep face a certain point
-void Herd::faceAll(int x, int y) {
+void Herd::faceAll(int x, int y, int clickType)
+{
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
-      it->face(x,y);
+      it->face(x,y, clickType);
 }
 
 int Herd::getXCenter() {
@@ -167,4 +166,9 @@ int Herd::getXCenter() {
 
 int Herd::getYCenter() {
 	return yCenter;
+}
+
+int Herd::getClickType()
+{
+	return clickType;
 }

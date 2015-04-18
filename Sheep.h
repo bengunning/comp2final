@@ -23,7 +23,7 @@ public:
 	void updatePos(int,int,vector<vector<int> >,vector<vector<int> >); // update next position based on speed and direction.
 	void updateDir(vector<vector<int> >,vector<vector<int> >); //turns towards a desired direction in radians
 	void updateSpeed(double); // tend towards the new velocity,
-	void face(int,int); //turns towards a given point
+	void face(int,int, int); //turns towards a given point; 3rd arg represents type of click 
 private:
 	//helper functions
 	void makeAngleValid(double*); //makes sure a radian value falls between 0 and 2*pi. It adds or subtracts 2*pi if necessary to fit into the range

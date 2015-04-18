@@ -26,11 +26,12 @@ public:
 	vector<double> getAllDirections();           // Return directions of all the sheep in the group list
 	int getXCenter();
 	int getYCenter();
-	void updateAll(int,int,vector<vector<int> >);			     // Call updatePos() function for all sheep in the group list
+	void updateAll(int,int,vector<vector<int> >);	// Call updatePos() function for all sheep in the group list
 	void handleAllEvents(SDL_Event*);
-	void faceAll(int,int);           //Turn to face a coordinate
+	void faceAll(int,int, int);           //Turn to face a coordinate, 3rd arg represents type of click
 	void setCenter(int,int);         //adjusts the center of the herd to a new point
 	void updateCenter(int,int);             //updates the center location
+	int getClickType();	// return clickType
 private:
 	void init();		    // common code between constructors
 
@@ -40,5 +41,6 @@ private:
 	vector<double> directions;       // a nx1 vector storing the directions of all the sheep
 	int xCenter, yCenter;    	       // The center of the herd all sheep are circled around
 	double centerSpeed, centerDirection;   // The speed and direction the center of the herd is moving
+	int clickType;	// differentiate different types of mouse click to have different reactions to a click
 };
 #endif
