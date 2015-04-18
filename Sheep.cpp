@@ -106,7 +106,7 @@ void Sheep::updateDir(vector<vector<int> > locations, vector<vector<int> > obsta
 		distance = sqrt(pow(xPos-obstacles[i][0],2) + pow(yPos-obstacles[i][1],2));
 		if(distance < obstacles[i][2]) {
 			//Within the stated distance of an obstacle, turn away from it
-			desiredDirection = atan2(yPos - obstacles[i][1], xPos - locations[i][0]);
+			desiredDirection = atan2(yPos - obstacles[i][1], xPos - obstacles[i][0]);
 		}
 	}
 
