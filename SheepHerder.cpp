@@ -10,7 +10,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	framerate(20),
 	frame(0),
 	startTime(0),
-	cap(false),
+	cap(true),
 	quit(false),
 	background(NULL),
 	centerX(NULL),
