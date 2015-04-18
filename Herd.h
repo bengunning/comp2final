@@ -32,6 +32,7 @@ public:
 	void setCenter(int,int);         //adjusts the center of the herd to a new point
 	void updateCenter(int,int);             //updates the center location
 	int getClickType();	// return clickType
+	void setClickType(int = 1);	// set clickType
 private:
 	void init();		    // common code between constructors
 

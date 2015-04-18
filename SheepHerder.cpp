@@ -85,15 +85,20 @@ void SheepHerder::playGame() {
 					}
 					break;
 				case SDL_KEYDOWN:
-					if(e.key.keysym.sym == SDLK_q) { //the 'q' key is pressed down
-						quit = true;
-					} else if (e.key.keysym.sym == SDLK_p) {
-						// toggle if paused is true or false
-						if(paused) {
-							paused = false;
-						} else {
-							paused = true;
-						}
+					// process different key presses
+					switch (e.key.keysym.sym){
+						case SDLK_q:	// 'q' is pressed to quit
+							quit = true;
+							break;
+						case SDLK_p:	// 'p' is pressed to pause
+							paused = !paused;	// revert state of paused
+							break;
+						case SDLK_1:	// '1' is pressed to change to clickType 1
+							herd.setClickType(1);
+							break;
+						case SDLK_2:	// '2' is pressed to change to clickType 2
+							herd.setClickType(2);
+							break;
 					}
 					break;
 				case SDL_MOUSEMOTION:

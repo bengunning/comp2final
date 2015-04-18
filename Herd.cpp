@@ -172,3 +172,8 @@ int Herd::getClickType()
 {
 	return clickType;
 }
+
+void Herd::setClickType(int newClickType)
+{
+	clickType = newClickType;
+}
