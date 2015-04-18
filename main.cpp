@@ -1,5 +1,6 @@
 // Driver program for sheepHerder
 
+#include "MainMenu.h"
 #include "SheepHerder.h"
 #include <cstdlib> //for atoi
 using namespace std;
@@ -30,6 +31,9 @@ int main(int argc, char* args[]) {
 			break;
 	}
 
+	MainMenu menu;
+	menu.drawToScreen();
+	menu.start();
 	SheepHerder shepherd(numberOfSheep,width,height);
 	shepherd.playGame();
 	

@@ -12,13 +12,14 @@ void Graphics::setup() {
 	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE | SDL_RESIZABLE);
 	SDL_WM_SetCaption("Sheep Herder",NULL);
 	SDL_WarpMouse(*xMousePos, *yMousePos); //Sets mouse to center of window
-	SDL_ShowCursor(SDL_DISABLE);
+	SDL_ShowCursor(showCursor);
 }
 
 Graphics::Graphics(int width, int height, int bits) :
 	screenWidth(width),
 	screenHeight(height),
 	bpp(bits),
+	showCursor(false),
 	xMousePos(new int),
 	yMousePos(new int)
 {
@@ -32,6 +33,11 @@ Graphics::~Graphics() {
 	delete xMousePos;
 	delete yMousePos;
 	SDL_Quit();
+}
+
+void Graphics::toggleCursorVisibility() {
+	showCursor = !showCursor;
+	SDL_ShowCursor(showCursor);
 }
 
 int Graphics::getWidth() {

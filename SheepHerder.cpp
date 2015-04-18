@@ -80,20 +80,14 @@ void SheepHerder::playGame() {
 					drawAllSurfaces();
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					if(!paused) {
-						herd.handleAllEvents(&e);
-					}
+					herd.handleAllEvents(&e);
 					break;
 				case SDL_KEYDOWN:
 					if(e.key.keysym.sym == SDLK_q) { //the 'q' key is pressed down
 						quit = true;
 					} else if (e.key.keysym.sym == SDLK_p) {
 						// toggle if paused is true or false
-						if(paused) {
-							paused = false;
-						} else {
-							paused = true;
-						}
+						paused = !paused;
 					}
 					break;
 				case SDL_MOUSEMOTION:

@@ -26,7 +26,7 @@ private:
 	int width, height; // the current size of the screen
 	int fontSize; // font size for the caption in the bottom right corner
 	string caption; // caption to be placed in the bottom right corner
-	SDL_Color captionColor; // color of the captioni
+	SDL_Color captionColor; // color of the caption
 
 	int framerate, frame, startTime; // framerate control
 	bool cap; // determines if framerate should be used or not
