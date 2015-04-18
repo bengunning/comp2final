@@ -31,6 +31,7 @@ private:
 	int framerate, frame, startTime; // framerate control
 	bool cap; // determines if framerate should be used or not
 
+	bool paused; //false if the program is actively running
 	bool quit; // determines if the program should stop
 	SDL_Event e; // a generic sdl event picked off the event queue
 

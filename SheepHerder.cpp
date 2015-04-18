@@ -12,6 +12,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	startTime(0),
 	cap(true),
 	quit(false),
+	paused(false),
 	background(NULL),
 	centerX(NULL),
 	title(NULL),
@@ -79,11 +80,20 @@ void SheepHerder::playGame() {
 					drawAllSurfaces();
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					herd.handleAllEvents(&e);
+					if(!paused) {
+						herd.handleAllEvents(&e);
+					}
 					break;
 				case SDL_KEYDOWN:
 					if(e.key.keysym.sym == SDLK_q) { //the 'q' key is pressed down
 						quit = true;
+					} else if (e.key.keysym.sym == SDLK_p) {
+						// toggle if paused is true or false
+						if(paused) {
+							paused = false;
+						} else {
+							paused = true;
+						}
 					}
 					break;
 				case SDL_MOUSEMOTION:
@@ -93,13 +103,17 @@ void SheepHerder::playGame() {
 					break;
 			}
 		}
-		herd.updateAll(system.getWidth(),system.getHeight(), obstacles);
-		drawAllSurfaces();
+		if(!paused) {
+			herd.updateAll(system.getWidth(),system.getHeight(), obstacles);
+			drawAllSurfaces();
 		
-		//framerate control
-		frame++;
-		if( ( cap == true ) && ( SDL_GetTicks() - startTime < 1000 / framerate ) ) {
-			SDL_Delay( ( 1000 / framerate ) - SDL_GetTicks() + startTime ); 
+			//framerate control
+			frame++;
+			if( ( cap == true ) && ( SDL_GetTicks() - startTime < 1000 / framerate ) ) {
+				SDL_Delay( ( 1000 / framerate ) - SDL_GetTicks() + startTime ); 
+			}
+		} else {
+			drawAllSurfaces();
 		}
 	}	
 }
