@@ -31,12 +31,14 @@ private:
 	int framerate, frame, startTime; // framerate control
 	bool cap; // determines if framerate should be used or not
 
+	bool paused; //false if the program is actively running
 	bool quit; // determines if the program should stop
 	SDL_Event e; // a generic sdl event picked off the event queue
 
 	SDL_Surface* background; // the background image
 	SDL_Surface* centerX;    // the X to go in the center of the herd
 	SDL_Surface* title;	 // the caption layer
+	SDL_Surface* cursor;     // image to follow cursor around
 	
 	//A stone obstacle
 	Stone stone;
