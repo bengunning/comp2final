@@ -37,6 +37,7 @@ private:
 	SDL_Surface* background; // the background image
 	SDL_Surface* centerX;    // the X to go in the center of the herd
 	SDL_Surface* title;	 // the caption layer
+	SDL_Surface* cursor;     // image to follow cursor around
 	
 	//A stone obstacle
 	Stone stone;

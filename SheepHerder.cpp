@@ -10,11 +10,12 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	framerate(20),
 	frame(0),
 	startTime(0),
-	cap(true),
+	cap(false),
 	quit(false),
 	background(NULL),
 	centerX(NULL),
 	title(NULL),
+	cursor(NULL),
 	stone(400,400,250,180,width,height), // added a radius to the stone
 	system(width,height,32) 
 	{
@@ -25,10 +26,11 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 void SheepHerder::init(int numberOfSheep) {
 	system.loadPics(); //loads the rotated pictures of sheep into a vector of SDL_Surfacesi
 
-	 //initialize surfaces
-	 background = system.load_image("images/GrayEdits/IMG_0458.png");
-	 centerX = system.load_image("images/centerX.png");
-	 title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
+	//initialize surfaces
+	background = system.load_image("images/GrayEdits/IMG_0458.png");
+	centerX = system.load_image("images/centerX.png");
+	title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
+	cursor = system.load_image("images/whistle.png");
 	 
 	//initialize the herd
 	if(numberOfSheep) {
@@ -46,6 +48,7 @@ void SheepHerder::drawAllSurfaces() {
 	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-fontSize*(caption.length()/3.5),system.getHeight()-fontSize-10,title,system.getScreen()); //display text in corner
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());  // display the x
 	system.displayAll(&herd); //display the sheep
+	system.apply_surface(*system.getXPos() - 25, *system.getYPos()- 15, cursor, system.getScreen()); //display the cursor
 	SDL_Flip(system.getScreen()); //send images to screen
 }
 
@@ -82,6 +85,9 @@ void SheepHerder::playGame() {
 					if(e.key.keysym.sym == SDLK_q) { //the 'q' key is pressed down
 						quit = true;
 					}
+					break;
+				case SDL_MOUSEMOTION:
+					SDL_GetMouseState(system.getXPos(),system.getYPos());
 					break;
 				default:
 					break;

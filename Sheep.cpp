@@ -88,7 +88,7 @@ void Sheep::updateDir(vector<vector<int> > locations, vector<vector<int> > obsta
 	for(int i=0; i < locations.size(); i++) {
 		if(xPos == locations[i][0] && yPos == locations[i][1]) continue; //Skip, as this is the same sheep as is being looked at in locations
 		currentDistance = sqrt(pow(xPos-locations[i][0],2) + pow(yPos-locations[i][1],2));
-		if(currentDistance < 100) { //if the distance between this sheep and another sheep is less than 60 pixels
+		if(currentDistance < 60) { //if the distance between this sheep and another sheep is less than 60 pixels
 			if(currentDistance < minDistance) {
 				minDistance = currentDistance;
 				closestSheep = i;
