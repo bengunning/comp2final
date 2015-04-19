@@ -46,7 +46,7 @@ void SheepHerder::init(int numberOfSheep) {
 }
 
 void SheepHerder::drawAllSurfaces() {
-	system.fill_with_background(background,2000,1200); //display the background
+	system.fill_with_background(background,300,400); //display the background
 	system.apply_surface(stone.getX()-45,stone.getY()-22,stone.getSurface(),system.getScreen());
 	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-fontSize*(caption.length()/3.5),system.getHeight()-fontSize-10,title,system.getScreen()); //display text in corner
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());  // display the x
