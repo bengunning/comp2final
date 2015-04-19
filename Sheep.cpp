@@ -54,12 +54,12 @@ void Sheep::handleEvents(SDL_Event* e) {
 	}
 }
 
-void Sheep::face(int x, int y, int clickType) {
+void Sheep::face(int x, int y, int moveType) {
 	desiredDirection =  M_PI + atan2((yPos - y), (xPos - x));
 
-	// adjust desired direction according to clickType
-	switch (clickType){
-		case 1:	// default type of click, sheep move toward mouse click, no need to adjust
+	// adjust desired direction according to moveType
+	switch (moveType){
+		case 1:	// default type of movement, sheep move toward mouse click, no need to adjust
 			break;
 		case 2:	// sheep move away from mouse click
 			desiredDirection += M_PI;	// reverse the desired direction

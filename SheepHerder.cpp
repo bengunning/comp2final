@@ -18,7 +18,9 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	title(NULL),
 	cursor(NULL),
 	stone(400,400,250,180,width,height), // added a radius to the stone
-	system(width,height,32) 
+	system(width,height,32), 
+	clickMode(1),
+	moveType(1)
 	{
 	captionColor.r = 255; captionColor.g = 255; captionColor.b = 255; //white
 	init(numberOfSheep);
@@ -67,7 +69,7 @@ void SheepHerder::playGame() {
 
 		herd.updateCenter(system.getWidth(),system.getHeight());
 		if(frame % 6) {
-			herd.faceAll(herd.getXCenter(),herd.getYCenter(), clickType);
+			herd.faceAll(herd.getXCenter(),herd.getYCenter(), moveType);
 		}
 
 		while(SDL_PollEvent(&e)!=0) {
@@ -80,7 +82,15 @@ void SheepHerder::playGame() {
 					drawAllSurfaces();
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					herd.handleAllEvents(&e);
+					switch (clickMode){
+						case 1:	// deafult mode, click to change center of herd
+							herd.handleAllEvents(&e);
+							break;
+						case 2: // mode 2, click to add a sheep at the clicking position
+							Sheep newSheep(*(system.getXPos()), *(system.getYPos()), herd.speed(), 0);	// create a new sheep at the position of mouse click, with speed being the average speed of herd and direction 0
+							herd.bear(newSheep);	// add newSheep to herd
+							break;
+					}
 					break;
 				case SDL_KEYDOWN:
 					// process different key presses
@@ -91,11 +101,18 @@ void SheepHerder::playGame() {
 						case SDLK_p:	// 'p' is pressed to pause
 							paused = !paused;	// revert state of paused
 							break;
-						case SDLK_1:	// '1' is pressed to change to clickType 1: move toward mouse click
-							clickType = 1;
+						case SDLK_1:	// '1' is pressed to change to moveType 1
+							moveType = 1;	// move toward mouse click
 							break;
-						case SDLK_2:	// '2' is pressed to change to clickType 2: move away from mouse click
-							clickType = 2;
+						case SDLK_2:	// '2' is pressed to change to moveType 2
+							moveType = 2;	// move away from mouse click
+							break;
+						case SDLK_ESCAPE: // 'esc' is pressed to change to clickMode 1
+							clickMode = 1;	// click to move the herd
+							break;
+						case SDLK_UP:	// arrow UP is pressed to change to clickMode 2
+							clickMode = 2;	// click to add a sheep
+							cursor = system.load_image("images/plus.jpg");
 							break;
 						default:
 							break;

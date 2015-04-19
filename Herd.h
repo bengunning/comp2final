@@ -28,7 +28,7 @@ public:
 	int getYCenter();
 	void updateAll(int,int,vector<vector<int> >);	// Call updatePos() function for all sheep in the group list
 	void handleAllEvents(SDL_Event*);
-	void faceAll(int,int, int);           //Turn to face a coordinate, 3rd arg represents type of click
+	void faceAll(int,int, int);           //Turn to face a coordinate, 3rd arg represents type of movement 
 	void setCenter(int,int);         //adjusts the center of the herd to a new point
 	void updateCenter(int,int);             //updates the center location
 private:

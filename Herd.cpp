@@ -61,7 +61,6 @@ void Herd::init() {
 	setCenter(300,300);
 	centerSpeed = 0;
 	centerDirection = 0;
-	clickType = 1;	// default click type, sheep moves toward the click
 }
 
 void Herd::setCenter(int x, int y) {
@@ -154,10 +153,10 @@ void Herd::handleAllEvents(SDL_Event* e) {
 }
 
 // Make all sheep face a certain point
-void Herd::faceAll(int x, int y, int clickType)
+void Herd::faceAll(int x, int y, int moveType)
 {
    for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++)
-      it->face(x,y, clickType);
+      it->face(x,y, moveType);
 }
 
 int Herd::getXCenter() {
@@ -166,14 +165,4 @@ int Herd::getXCenter() {
 
 int Herd::getYCenter() {
 	return yCenter;
-}
-
-int Herd::getClickType()
-{
-	return clickType;
-}
-
-void Herd::setClickType(int newClickType)
-{
-	clickType = newClickType;
 }
