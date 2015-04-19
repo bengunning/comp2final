@@ -124,11 +124,11 @@ void SheepHerder::playGame() {
 							break;
 						case SDLK_UP:	// arrow UP is pressed to switch to clickMode 2
 							clickMode = 2;	// click to add (bear) a sheep
-							cursor = system.load_image("images/plus.jpeg");
+							cursor = system.load_image("images/GrayEdits/gsheep_165.bmp");
 							break;
 						case SDLK_DOWN:	// arrow DOWN is pressed to switch to clickMode 3
 							clickMode = 3;	// click to remove (shear) a sheep
-							cursor = system.load_image("images/minus.jpg");
+							cursor = system.load_image("images/wolf.jpeg");
 							break;
 						default:
 							break;
