@@ -26,6 +26,13 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	init(numberOfSheep);
 }
 
+SheepHerder::~SheepHerder() {
+	SDL_FreeSurface(background);
+	SDL_FreeSurface(centerX);
+	SDL_FreeSurface(title);
+	SDL_FreeSurface(cursor);
+}
+
 void SheepHerder::init(int numberOfSheep) {
 	system.loadPics(); //loads the rotated pictures of sheep into a vector of SDL_Surfacesi
 
@@ -154,10 +161,4 @@ void SheepHerder::playGame() {
 			drawAllSurfaces();
 		}
 	}	
-}
-
-SheepHerder::~SheepHerder() {
-	SDL_FreeSurface(background);
-	SDL_FreeSurface(centerX);
-	SDL_FreeSurface(title);
 }
