@@ -45,6 +45,8 @@ private:
 
 	Herd herd; // the herd of sheep
 	SheepGraphics system; // the main graphics layer
+	
+	int clickType;	// differentiate different types of mouse click to have different reactions to a click
 };
 
 #endif

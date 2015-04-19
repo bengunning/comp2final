@@ -67,7 +67,7 @@ void SheepHerder::playGame() {
 
 		herd.updateCenter(system.getWidth(),system.getHeight());
 		if(frame % 6) {
-			herd.faceAll(herd.getXCenter(),herd.getYCenter(), herd.getClickType());
+			herd.faceAll(herd.getXCenter(),herd.getYCenter(), clickType);
 		}
 
 		while(SDL_PollEvent(&e)!=0) {
@@ -91,11 +91,13 @@ void SheepHerder::playGame() {
 						case SDLK_p:	// 'p' is pressed to pause
 							paused = !paused;	// revert state of paused
 							break;
-						case SDLK_1:	// '1' is pressed to change to clickType 1
-							herd.setClickType(1);
+						case SDLK_1:	// '1' is pressed to change to clickType 1: move toward mouse click
+							clickType = 1;
 							break;
-						case SDLK_2:	// '2' is pressed to change to clickType 2
-							herd.setClickType(2);
+						case SDLK_2:	// '2' is pressed to change to clickType 2: move away from mouse click
+							clickType = 2;
+							break;
+						default:
 							break;
 					}
 					break;

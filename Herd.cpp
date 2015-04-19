@@ -61,7 +61,7 @@ void Herd::init() {
 	setCenter(300,300);
 	centerSpeed = 0;
 	centerDirection = 0;
-	clickType = 2;	// default click type, sheep moves toward the click
+	clickType = 1;	// default click type, sheep moves toward the click
 }
 
 void Herd::setCenter(int x, int y) {

@@ -49,7 +49,6 @@ void Sheep::handleEvents(SDL_Event* e) {
 	if (e->type == SDL_MOUSEBUTTONDOWN) { // user has clicked
 		int xMouse, yMouse;
 		SDL_GetMouseState(&xMouse, &yMouse); // set x y mouse positions
-//		face(xMouse,yMouse);
 		speed = 10 + 55/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
 		//closer the click, the more the speed increases, 50 minimum change
 	}
@@ -60,7 +59,7 @@ void Sheep::face(int x, int y, int clickType) {
 
 	// adjust desired direction according to clickType
 	switch (clickType){
-		case 1:	// default type of click, sheep move forward mouse click, no need to adjust
+		case 1:	// default type of click, sheep move toward mouse click, no need to adjust
 			break;
 		case 2:	// sheep move away from mouse click
 			desiredDirection += M_PI;	// reverse the desired direction
