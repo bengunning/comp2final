@@ -21,7 +21,7 @@ Graphics::Graphics(int width, int height, int bits) :
 		cout << "Unable to initialize SDL: " << SDL_GetError() << endl;
 	}
 	TTF_Init();
-	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE | SDL_RESIZABLE);
+	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
 	SDL_WM_SetCaption("Sheep Herder",0);
 	SDL_WarpMouse(*xMousePos, *yMousePos); //Sets mouse to center of window
 	SDL_ShowCursor(showCursor);

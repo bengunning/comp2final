@@ -12,7 +12,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	startTime(0),
 	cap(true),
 	quit(false),
-	paused(false),
+	paused(true),
 	background(NULL),
 	centerX(NULL),
 	title(NULL),

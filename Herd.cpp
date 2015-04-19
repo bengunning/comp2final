@@ -23,8 +23,8 @@ Herd::Herd(int x, int w, int h)
 	srand(time(NULL));
 	init();
 	if (w > 0 && h > 0) {
-		for (int i = 0; i < x; i++) { //count number of 
-			Sheep temp(rand()%(w - w/4) + w/8, (rand()%(h - h/4)) + h/8, 0, 0);//*(8/9) + w*(17/18)), rand()%(h*(8/9) + h*(17/18)), 0, 0); // speed defaults at 0
+		for (int i = 0; i < x; i++) { //count number of
+			Sheep temp(rand()%(w - w/4) + w/8, (rand()%(h - h/4)) + h/8, 10, 0);
 			// sheep only fill in 8/9 of the screen
 			bear(temp);
 		}
@@ -58,7 +58,9 @@ Herd::Herd(string fileName) {
 
 void Herd::init() {
 	numSheep = 0;
-	setCenter(300,300);
+	int x,y; //postion of mouse
+	SDL_GetMouseState(&x,&y);
+	setCenter(x,y);
 	centerSpeed = 0;
 	centerDirection = 0;
 }
@@ -97,7 +99,7 @@ void Herd::shear(int xPos, int yPos) {
 
 	for(list<Sheep>::iterator it = group.begin(); it != group.end(); ++ it){
 		// if the sheep is close enough (within 10 pixels) to the specified position, remove it
-		if(abs(xPos - it->getX()) < 10 && abs(yPos - it->getY()) < 10){
+		if(abs(xPos - it->getX()) < 50 && abs(yPos - it->getY()) < 50){
 			for(int i = 0; i < numSheep; i ++)
 				if(locations[i][0] == it->getX() && locations[i][1] == it->getY()) {
 					// remove corresponding location and direction of the removed sheep
