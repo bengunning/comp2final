@@ -20,7 +20,7 @@ public:
 	Herd(int, int, int);	     		    // Randomized Constructor
 	Herd(string);		    // Constructor with a filename
 	void bear( Sheep& );	    // Add a sheep to the end of the group list
-	void shear( Sheep& );	    // Remove a particular sheep from the group list
+	void shear(int, int);	    // Remove a particular sheep from the group list
 	double speed(); 		    // calculate the average speed of the herd
 	vector<vector<int> > getAllLocations();   // Return locations of all the sheep in the group list
 	vector<double> getAllDirections();           // Return directions of all the sheep in the group list
@@ -31,6 +31,7 @@ public:
 	void faceAll(int,int, int);           //Turn to face a coordinate, 3rd arg represents type of movement 
 	void setCenter(int,int);         //adjusts the center of the herd to a new point
 	void updateCenter(int,int);             //updates the center location
+	int getNumSheep();		// return number of sheep
 private:
 	void init();		    // common code between constructors
 

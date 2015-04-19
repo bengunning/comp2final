@@ -90,26 +90,32 @@ void Herd::bear( Sheep& sheep )
    directions.push_back(0);
 }
 
-// Remove a particular sheep from the group list
-void Herd::shear( Sheep& sheep ) {
-   if(numSheep < 1) 
-      return;
+// Remove sheep at a particular position from the group list
+void Herd::shear(int xPos, int yPos) {
+	if(numSheep < 1)	// quit if there's no sheep in the list 
+		return;
 
-   list<Sheep>::iterator it = find( group.begin() , group.end() , sheep );
-   if (it != group.end()) {
-      group.erase(it);
-      numSheep--;
-      // remove the location of sheep from vector locations	 
-      for(int i = 0; i < numSheep; i ++)
-	 if(locations[i][0] == sheep.getX() && locations[i][1] == sheep.getY()) {
-	    locations.erase(locations.begin() + i);
-            directions.erase(directions.begin() + i);
-         }
-   }
+	for(list<Sheep>::iterator it = group.begin(); it != group.end(); ++ it){
+		// if the sheep is close enough (within 10 pixels) to the specified position, remove it
+		if(abs(xPos - it->getX()) < 10 && abs(yPos - it->getY()) < 10){
+			for(int i = 0; i < numSheep; i ++)
+				if(locations[i][0] == it->getX() && locations[i][1] == it->getY()) {
+					// remove corresponding location and direction of the removed sheep
+					locations.erase(locations.begin() + i);
+					directions.erase(directions.begin() + i);
+					-- i;
+			}
+			group.erase(it);
+			-- it;
+			numSheep --;
+		}
+	}
 }
 
 // finds the average speed of herd
 double Herd::speed() {
+	if(group.size() == 0)
+		return 0;
 	list<Sheep>::iterator it;
 	double sum = 0;
 	for (it = group.begin(); it != group.end(); it++) {
@@ -131,17 +137,16 @@ vector<double> Herd::getAllDirections() {
 // Call updatePos() function for all sheep in the group list
 void Herd::updateAll(int screenWidth, int screenHeight, vector<vector<int> > obstacles)
 {
-   int i = 0;
-   for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++) {
-      it->updatePos(screenWidth, screenHeight, locations, obstacles);
-      it->updateSpeed(speed());
-      locations[i][0] = it->getX();
-      locations[i][1] = it->getY();
-      // update locations vector along with each sheep. using random access
-      directions[i] = it->getDirection();
-      i++;
-   }
-      
+	int i = 0;
+	for(list<Sheep>::iterator it = group.begin(); it != group.end(); it ++) {
+		it->updatePos(screenWidth, screenHeight, locations, obstacles);
+		it->updateSpeed(speed());
+		locations[i][0] = it->getX();
+		locations[i][1] = it->getY();
+		// update locations vector along with each sheep. using random access
+		directions[i] = it->getDirection();
+		i++;
+	}
 }
 
 // Handles a mouse click
@@ -165,4 +170,9 @@ int Herd::getXCenter() {
 
 int Herd::getYCenter() {
 	return yCenter;
+}
+
+int Herd::getNumSheep()
+{
+	return numSheep;
 }
