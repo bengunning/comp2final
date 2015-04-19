@@ -24,8 +24,6 @@ public:
 	SDL_Surface *getScreen(); //getter for screen
 	SDL_Surface *load_text(std::string,std::string,SDL_Color,int);
 private:
-	void setup();
-
 	SDL_Surface* screen; //window to place other surfaces on
 	int screenWidth;  //width of window
 	int screenHeight; //height of window

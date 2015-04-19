@@ -26,6 +26,7 @@ MainMenu::MainMenu() :
 }
 
 MainMenu::~MainMenu() {
+	SDL_FreeSurface(playText);
 	SDL_FreeSurface(background);
 }
 

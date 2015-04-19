@@ -14,6 +14,12 @@ SheepGraphics::SheepGraphics(int width, int height, int bpp) :
 		vector<SDL_Surface*> sheepPics;
 	}
 
+SheepGraphics::~SheepGraphics() {
+	for(int i=0; i < sheepPics.size(); i++) {
+		SDL_FreeSurface(sheepPics[i]);
+	}
+}
+
 void SheepGraphics::displayAll(Herd * herd) {
 	vector<vector<int> > locs;
 	vector<double> dirs;

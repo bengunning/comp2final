@@ -6,15 +6,6 @@
 #include <iostream>
 using namespace std;
 
-void Graphics::setup() {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	TTF_Init();
-	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE | SDL_RESIZABLE);
-	SDL_WM_SetCaption("Sheep Herder",NULL);
-	SDL_WarpMouse(*xMousePos, *yMousePos); //Sets mouse to center of window
-	SDL_ShowCursor(showCursor);
-}
-
 Graphics::Graphics(int width, int height, int bits) :
 	screenWidth(width),
 	screenHeight(height),
@@ -25,7 +16,15 @@ Graphics::Graphics(int width, int height, int bits) :
 {
 	*xMousePos = getWidth()/2;
 	*yMousePos = getHeight()/2;
-	setup();
+	
+	if(SDL_Init(SDL_INIT_VIDEO != 0)) {
+		cout << "Unable to initialize SDL: " << SDL_GetError() << endl;
+	}
+	TTF_Init();
+	screen = SDL_SetVideoMode(screenWidth,screenHeight,bpp,SDL_SWSURFACE | SDL_RESIZABLE);
+	SDL_WM_SetCaption("Sheep Herder",0);
+	SDL_WarpMouse(*xMousePos, *yMousePos); //Sets mouse to center of window
+	SDL_ShowCursor(showCursor);
 }
 
 Graphics::~Graphics() {
@@ -79,7 +78,10 @@ SDL_Surface *Graphics::load_text(string filename, string text, SDL_Color color, 
 	font = TTF_OpenFont(filename.c_str(),fontSize);
 
 	SDL_Surface *temp;
-	return TTF_RenderText_Solid(font,text.c_str(),color);
+	temp = TTF_RenderText_Solid(font,text.c_str(),color);
+	
+	TTF_CloseFont(font);
+	return temp;
 }
 
 SDL_Surface *Graphics::load_image(string filename) {
