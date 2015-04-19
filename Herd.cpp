@@ -24,7 +24,10 @@ Herd::Herd(int x, int w, int h)
 	init();
 	if (w > 0 && h > 0) {
 		for (int i = 0; i < x; i++) { //count number of
-			Sheep temp(rand()%(w - w/4) + w/8, (rand()%(h - h/4)) + h/8, 10, 0);
+			double x, y; //location to create sheep
+			x = rand()%(w-w/4) + w/8;
+			y = rand()%(h-h/4) + h/8;
+			Sheep temp(x, y, 10, 0);
 			// sheep only fill in 8/9 of the screen
 			bear(temp);
 		}
@@ -82,14 +85,26 @@ void Herd::updateCenter(int width, int height) {
 // Add a sheep to the end of the group list
 void Herd::bear( Sheep& sheep )
 {
-   group.push_back(sheep);
-   numSheep++;
-   // store the location of sheep into vector locations   
-   vector<int> temp; // temp vector to store location of sheep
-   temp.push_back(sheep.getX());
-   temp.push_back(sheep.getY());
-   locations.push_back(temp);
-   directions.push_back(0);
+   //Check if sheep would not overlap other sheep
+   bool overlapsAnotherSheep = false;
+   for(int i=0; i < locations.size(); i++) {
+      double distance = sqrt(pow(sheep.getX() - locations[i][0],2) + pow(sheep.getY() - locations[i][1],2));
+      if(distance < 60) {
+         overlapsAnotherSheep = true;
+         break; // no need to check other sheep as we only care if it overlaps one
+      }
+   }
+
+   if(!overlapsAnotherSheep) {
+      group.push_back(sheep);
+      numSheep++;
+      // store the location of sheep into vector locations   
+      vector<int> temp; // temp vector to store location of sheep
+      temp.push_back(sheep.getX());
+      temp.push_back(sheep.getY());
+      locations.push_back(temp);
+      directions.push_back(0);
+   }
 }
 
 // Remove sheep at a particular position from the group list

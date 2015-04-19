@@ -12,7 +12,7 @@ int main(int argc, char* args[]) {
 	// Three arguments will be the number of sheep wanted followed
 	// by the width and height
 	int width = 1280, height = 900; //default width and height of window
-	int numberOfSheep = 0; //default number of sheep. Leaving this as 0 will read in sheep from Herd.txt by default
+	int numberOfSheep = 80; //default number of sheep. Leaving this as 0 will read in sheep from Herd.txt by default
 	int numberOfArgs = argc - 1;
 	switch(numberOfArgs) {
 		case 1:
