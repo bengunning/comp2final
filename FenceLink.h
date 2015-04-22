@@ -5,7 +5,7 @@
 #include <vector>
 #include "SDL/SDL.h"
 
-class FenceLink: Obstacle { // 
+class FenceLink: public Obstacle { // 
 public:
 	FenceLink(int orient, int x, int y, int screenWidth, int screenHeight); // loads different pictures and point vectors depending on the orientation
 	// 0 = Horizontal, 1 = Vertical, 2 = top right corner, 3 = top left corner, 4 = bottom left corner,
