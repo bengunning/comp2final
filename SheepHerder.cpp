@@ -17,7 +17,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	centerX(NULL),
 	title(NULL),
 	cursor(NULL),
-	stone(400,400,250,180,width,height), // added a radius to the stone
+	stone(400,400,180,width,height), // added a radius to the stone
 	system(width,height,32), 
 	clickMode(1),
 	moveType(1)
