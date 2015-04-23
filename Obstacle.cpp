@@ -23,7 +23,7 @@ vector< vector<int> > Obstacle::getHazards() {
 		temp[i][0] += getX(); // add the x and y position to this vector
 		temp[i][1] += getY(); 
 	}
-		
+	return temp;	
 }
 
 

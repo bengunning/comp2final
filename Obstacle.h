@@ -18,7 +18,6 @@ public:
 	int getX();
 	int getY();
 	vector< vector<int> > getHazards();
-	vector <vector<int> > getPoints();
 	int getBuffer();
 	virtual SDL_Surface* getSurface() const = 0; //pure virtual function
 protected:
