@@ -5,18 +5,20 @@
 
 class MainMenu {
 public:
-	MainMenu(); // default constructor
-	~MainMenu(); // destructor
-	void drawToScreen(); // draws the main menu
-	void start(); // Handles events and determines what to load next
+        MainMenu(); // default constructor
+        ~MainMenu(); // destructor
+        void drawToScreen(); // draws the main menu
+        void start(); // Handles events and determines what to load next
 private:
-	SDL_Surface * background;
-	SDL_Surface * playText;
-	//Button playButton;
-	Graphics graphics;
+        SDL_Surface * background;
+        SDL_Surface * playText;
+        //Button playButton;
+        SDL_Surface * quitText;
+        //Button quitButton
+        Graphics graphics;
 
-	bool quit;
-	SDL_Event e;
+        bool quit;
+        SDL_Event e;
 };
 
 #endif
