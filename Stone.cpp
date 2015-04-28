@@ -7,7 +7,7 @@ Stone::Stone(int x, int y, int buffer, int screenWidth, int screenHeight) :
 	Obstacle::Obstacle(x,y,buffer,screenWidth,screenHeight),
 	image(NULL)
 {
-	image = graphics.load_image("images/Fences/fence13small.png");
+	image = graphics.load_image("images/Objects/clay.png");
 	//string pFile = "images/Objects/Stone.txt";
 	//loadPoints(pFile);
 }

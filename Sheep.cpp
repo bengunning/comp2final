@@ -49,7 +49,7 @@ void Sheep::handleEvents(SDL_Event* e) {
 	if (e->type == SDL_MOUSEBUTTONDOWN) { // user has clicked
 		int xMouse, yMouse;
 		SDL_GetMouseState(&xMouse, &yMouse); // set x y mouse positions
-		speed = 10 + 55/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
+		speed = 5 + 55/sqrt(pow(xPos - xMouse, 2) + pow(yPos - yMouse, 2)); // increase speed by arbitary value over the distance in pixels
 		//closer the click, the more the speed increases, 50 minimum change
 	}
 }

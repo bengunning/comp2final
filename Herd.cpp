@@ -27,7 +27,7 @@ Herd::Herd(int x, int w, int h)
 			double x, y; //location to create sheep
 			x = rand()%(w-w/4) + w/8;
 			y = rand()%(h-h/4) + h/8;
-			Sheep temp(x, y, 10, 0);
+			Sheep temp(x, y, 5, 0);
 			// sheep only fill in 8/9 of the screen
 			bear(temp);
 		}

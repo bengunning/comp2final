@@ -7,7 +7,7 @@
 #include "SDL/SDL.h"
 
 FenceLink::FenceLink(int o, int x, int y, int screenWidth, int screenHeight) :
-	Orient(o), Obstacle(x, y, 105, screenWidth, screenHeight) // might need to tweak the buffer of the actual obstacle
+	Orient(o), Obstacle(x, y, 150, screenWidth, screenHeight) // might need to tweak the buffer of the actual obstacle
 {
 	switch(o) {
 		case 0:
@@ -39,16 +39,11 @@ FenceLink::FenceLink(int o, int x, int y, int screenWidth, int screenHeight) :
 		default:
 			image = graphics.load_image("images/Fences/fence2.png"); // top right
 	}
-	if(image) {
-		std::cout << "It is initialized" << std::endl;		
-	} else {
-		std::cout << "ya done goofed" << std::endl;
-	}
+	
 }
 
 FenceLink::~FenceLink() {
 	SDL_FreeSurface(image);
-	std::cout << "SURFACE FREED!" << std::endl;
 }
 
 int FenceLink::getOrient(void) const {
