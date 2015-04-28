@@ -1,7 +1,9 @@
 #include "SheepHerder.h"
 #include "Herd.h"
 #include "SheepGraphics.h"
-//#include "Fence.h"
+#include "Fence.h"
+#include <list>
+#include "FenceLink.h"
 
 SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	width(width),
@@ -19,7 +21,7 @@ SheepHerder::SheepHerder(int numberOfSheep, int width, int height) :
 	title(NULL),
 	cursor(NULL),
 	stone(400,400,180,width,height), // added a radius to the stone
-	//sheep_pen(width, height),
+	sheep_pen(width, height),
 	system(width,height,32), 
 	clickMode(1),
 	moveType(1)
@@ -43,7 +45,7 @@ void SheepHerder::init(int numberOfSheep) {
 	centerX = system.load_image("images/centerX.png");
 	title = system.load_text("fonts/fancy.ttf",caption,captionColor,fontSize);
 	cursor = system.load_image("images/whistle.png");
-	//sheep_pen.drawBox(25, 25, 3*width/4, 3*height/4);
+	sheep_pen.drawLine(0, 100, 500, 100);//3*width/4, 3*height/4); // draw verticle line
 	//initialize the herd
 	if(numberOfSheep) {
 		Herd temp(numberOfSheep, system.getWidth(), system.getHeight()); // initialize random herd
@@ -54,9 +56,12 @@ void SheepHerder::init(int numberOfSheep) {
 	}
 }
 
-void SheepHerder::drawAllSurfaces() {
+void SheepHerder::drawAllSurfaces() { // destructor for Fence_Links called here somehow.
 	system.fill_with_background(background,300,400); //display the background
 	system.apply_surface(stone.getX()-45,stone.getY()-60,stone.getSurface(),system.getScreen());
+	for (std::list<FenceLink>::iterator lit = (sheep_pen.getLinks()).begin(); lit != (sheep_pen.getLinks()).begin(); lit++) {
+		system.apply_surface(lit->getX(), lit->getY(), lit->getSurface(), system.getScreen());
+	}
 	// need to draw all fence links in the pen
 	if (system.getWidth() > 600 && system.getHeight() > 400) system.apply_surface(system.getWidth()-fontSize*(caption.length()/3.5),system.getHeight()-fontSize-10,title,system.getScreen()); //display text in corner
 	system.apply_surface(herd.getXCenter()-50,herd.getYCenter()-50,centerX,system.getScreen());  // display the x

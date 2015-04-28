@@ -17,21 +17,21 @@ int Obstacle::getY() {
 	return y;
 }
 
-vector< vector<int> > Obstacle::getHazards() {
+/*vector< vector<int> > Obstacle::getHazards() {
 	vector< vector<int> > temp(hazards); // copy hazards vector
 	for (int i = 0; i < temp.size(); i++) {
 		temp[i][0] += getX(); // add the x and y position to this vector
 		temp[i][1] += getY(); 
 	}
 	return temp;	
-}
+}*/
 
 
 int Obstacle::getBuffer() {
 	return buffer;
 }
 
-void Obstacle::loadPoints(string file) {
+/*void Obstacle::loadPoints(string file) {
 	// text file adds points relative to the center point
 	std::ifstream coord; // file to input the coordinates
 	coord.open(file.c_str());
@@ -44,4 +44,4 @@ void Obstacle::loadPoints(string file) {
 		p++; // count points inserted to file
 	}
 	coord.close();
-}
+}*/

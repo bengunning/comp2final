@@ -8,8 +8,8 @@ Stone::Stone(int x, int y, int buffer, int screenWidth, int screenHeight) :
 	image(NULL)
 {
 	image = graphics.load_image("images/Fences/fence13small.png");
-	string pFile = "images/Objects/Stone.txt";
-	loadPoints(pFile);
+	//string pFile = "images/Objects/Stone.txt";
+	//loadPoints(pFile);
 }
 
 SDL_Surface* Stone::getSurface() const {

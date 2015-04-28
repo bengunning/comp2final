@@ -11,14 +11,12 @@ FenceLink::FenceLink(int o, int x, int y, int screenWidth, int screenHeight) :
 {
 	switch(o) {
 		case 0:
-			loadPoints("HorizFence.txt"); // load the text files with the specific layout of the fence hazards
 			if ((float)y/(float)screenHeight > 0.5)
 				image = graphics.load_image("images/Fences/fence13.png"); // farther down the screen
 			else
 				image = graphics.load_image("images/Fences/fence7.png");
 			break;
 		case 1: 
-			loadPoints("VertiFence.txt");
 			if ((float)x/(float)screenWidth > 2.0/3.0) // farther to the right
 				image = graphics.load_image("images/Fences/fence11.png"); 
  			else if ((float)x/(float)screenWidth > 1.0/3.0) // middle-ish
@@ -27,23 +25,18 @@ FenceLink::FenceLink(int o, int x, int y, int screenWidth, int screenHeight) :
 				image = graphics.load_image("images/Fences/fence6.png");
 			break;
 		case 2: // default to corners, predominantly just one point in the center, the other numbers in the encoding are important for pictures
-			loadPoints("CornerFence.txt");
 			image = graphics.load_image("images/Fences/fence2.png"); // top right
 			break;
 		case 3:
-			loadPoints("CornerFence.txt");
 			image = graphics.load_image("images/Fences/fence1.png"); // top left
 			break;
 		case 4:
-			loadPoints("CornerFence.txt");
 			image = graphics.load_image("images/Fences/fence5.png"); // bottom left
 			break;
 		case 5:
-			loadPoints("CornerFence.txt");
 			image = graphics.load_image("images/Fences/fence3.png"); // bottom right
 			break;
 		default:
-			loadPoints("CornerFence.txt");
 			image = graphics.load_image("images/Fences/fence2.png"); // top right
 	}
 	if(image) {
@@ -63,13 +56,15 @@ int FenceLink::getOrient(void) const {
 
 long int FenceLink::getLengthX(void) const {
 
-	return hazards[1][0] - hazards[0][0] + 2*buffer; // distance between two points plus the outward reaches of the buffer
+	//return hazards[1][0] - hazards[0][0] + 2*buffer; // distance between two points plus the outward reaches of the buffer
+	return 2*buffer;
 
 }
 
 long int FenceLink::getLengthY(void) const {
 	
-	return hazards[1][1] - hazards[0][1] + 2*buffer; 
+	return 2*buffer;
+	//return hazards[1][1] - hazards[0][1] + 2*buffer; 
 
 }
 
