@@ -1,6 +1,7 @@
 // A fence class that the sheep will avoid. Draws a line or box
 // 19 April 2015
-
+#ifndef FENCELINK_H
+#define FENCELINK_H
 #include "Obstacle.h"
 #include <vector>
 #include "SDL/SDL.h"
@@ -19,4 +20,6 @@ public:
 private:
 	int Orient;
 	SDL_Surface* image;
-}
+};
+
+#endif

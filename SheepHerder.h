@@ -10,6 +10,7 @@
 #include "Herd.h"
 #include "SheepGraphics.h"
 #include "Stone.h"
+#include "Fence.h"
 using namespace std;
 
 class SheepHerder {
@@ -42,6 +43,8 @@ private:
 	
 	//A stone obstacle
 	Stone stone;
+	
+	Fence sheep_pen; // a fence to contain sheep.
 
 	Herd herd; // the herd of sheep
 	SheepGraphics system; // the main graphics layer

@@ -4,8 +4,9 @@
 #include "Obstacle.h"
 #include <list>
 #include "SDL/SDL.h"
-#include "FenceLink"
-
+#include "FenceLink.h"
+#ifndef FENCE_H
+#define FENCE_H
 class Fence { // 
 public:
 	Fence(int screenWidth, int screenHeight); // Fence constructor
@@ -16,4 +17,5 @@ private:
 	std::list<FenceLink> links; // holds all the fencelinks added
 	int screenWidth;
 	int screenHeight;
-}
+};
+#endif
