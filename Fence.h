@@ -11,11 +11,12 @@ class Fence { //
 public:
 	Fence(int screenWidth, int screenHeight); // Fence constructor
 	// should not need destructor since all the surfaces are in Fence Links
+	~Fence();
 	void drawLine(int o, int p1, int p2, int c); // places fences along a horizontal or vertical axis from p1 to p2, all on second coordinate c
 	void drawBox(int x, int y, int l, int w); // draws a rectangle of dimensions l w from points x y
-	std::list<FenceLink> getLinks(void) const; // return the list of fencelinks
+	std::list<FenceLink *> &getLinks(void); // return the list of fencelinks
 private:
-	std::list<FenceLink> links; // holds all the fencelinks added
+	std::list<FenceLink *> links; // holds all the fencelinks added
 	int screenWidth;
 	int screenHeight;
 };
