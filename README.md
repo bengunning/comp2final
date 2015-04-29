@@ -20,6 +20,27 @@ CONTROLS
 	Up arrow: Switch to the generative cursor, represented by another sheep, to add more sheep. 
 	Down arrow: Switch to the detracting cursor, represented by a wolf, to remove sheep. 
         Esc: Switch to the first click type. In this mode, the cursor is a whistle. Clicks move the location of the user's point.
+        
+INITIAL SETUP:
+	This program relies on SDL (not SDL2).  To install SDL on your particular system, check out http://lazyfoo.net/SDL_tutorials/lesson01/.  Once installed, fork our repository.  Change directories into comp2final, the main directory, and run:
+	
+	make -j
+	
+This will use our makefile to compile the program.  Finally, run:
+
+	./sheepHerder
+	
+to enter the project.  If desired, additional arguments may be supplied (although none are necessary).  If you desire a certain amount of initial sheep, put that number as the first argument.  An example of running the program with a start of (at most) 6 sheep would be:
+
+	./sheepHerder 6
+	
+The number of sheep can also be changed easily while the program is running. 
+
+The next two arguments, if desired, will determine the size of the window for the simulation.  To have (at most) 6 sheep with a window 1000x1000, run:
+
+	./sheepHerder 6 1000 1000
+	
+However, the size of the screen is also editable during the simulation.
 	
 
 
