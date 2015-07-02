@@ -138,6 +138,9 @@ void SheepHerder::playGame() {
 						case SDLK_p:	// 'p' is pressed to pause
 							paused = !paused;	// revert state of paused
 							break;
+						case SDLK_c:    // 'c' is pressed to toggle speed cap
+							cap = !cap;
+							break;
 						case SDLK_1:	// '1' is pressed to switch to moveType 1
 							moveType = 1;	// move toward mouse click
 							break;
